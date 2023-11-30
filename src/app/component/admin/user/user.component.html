@@ -1,0 +1,36 @@
+<div class="navigation-container">
+  <p class="navigateIcon">All Users&nbsp;</p>
+  <p class="greaterThan">> &nbsp;</p>
+  <img src="assets/images/user.png" height="16px" width="16px" alt="" />
+</div>
+
+<table class="table mt-4">
+  <thead>
+    <tr>
+      <th scope="col">User Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">UserName</th>
+      <th scope="col">Joined Date</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.joinedAt }}</td>
+      <td>
+        <button class="btn" (click)="deleteUser(user.id)">
+          <img
+            src="assets/images/deleteIcon.png"
+            alt=""
+            style="vertical-align: middle;"
+            height="20px"
+            width="20px"
+          />
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,256 @@
+<!-- NAVBAR -->
+<nav
+  class="navbar navbar-expand-lg"
+  style="height: 80px; width: 100%; z-index: 2; background-color: black"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">
+      <img
+        src="assets/images/logo.png"
+        alt="image"
+        height="60px"
+        width="100px"
+      />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+        <li class="nav-item me-5">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            style="color: white; background: none"
+            routerLink="/"
+            onmouseover="this.style.color='red'"
+            onmouseout="this.style.color='white'"
+            >HOME</a
+          >
+        </li>
+        <li class="nav-item me-5">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            style="color: white; background: none"
+            href="#"
+            onmouseover="this.style.color='red'"
+            onmouseout="this.style.color='white'"
+            >ABOUT</a
+          >
+        </li>
+        <li class="nav-item me-5">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            style="color: white; background: none"
+            href="#"
+            onmouseover="this.style.color='red'"
+            onmouseout="this.style.color='white'"
+            >GALLERY</a
+          >
+        </li>
+        <li class="nav-item me-5">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            style="color: white; background: none"
+            href="#"
+            onmouseover="this.style.color='red'"
+            onmouseout="this.style.color='white'"
+            >CONTACT</a
+          >
+        </li>
+        <li class="nav-item me-3">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            style="color: white; background: none"
+            href="/booking"
+            onmouseover="this.style.color='red'"
+            onmouseout="this.style.color='white'"
+            >BOOKINGS</a
+          >
+        </li>
+      </ul>
+      <div *ngIf="isLoggedIn">
+        <a routerLink="/" style="color: white"
+          ><img
+            src="assets/images/logout.png"
+            alt=""
+            style="height: 40px; width: 40px"
+        /></a>
+      </div>
+      <div *ngIf="!isLoggedIn">
+        <a routerLink="/" style="color: white"
+          ><img
+            src="assets/images/login.png"
+            alt=""
+            style="height: 40px; width: 40px"
+        /></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- FILTER -->
+<!-- <form (ngSubmit)="onFormSubmit()" #Form="ngForm" [formGroup]="form">
+  <div class="filter container-fluid">
+    <div class="dateFilter row px-2">
+      <div class="checkIn col-md-4">
+        <h3 class="check-in">Check In Date</h3>
+        <input
+          type="date"
+          class="form-control date-input"
+          placeholder="Check-in Date"
+          style="box-shadow: none"
+          ngModel
+          name="check-in-date"
+          required
+        />
+      </div>
+      <div class="checkOut col-md-4">
+        <h3 class="check-in">Check Out Date</h3>
+        <input
+          type="date"
+          class="form-control date-input"
+          placeholder="Check-out Date"
+          style="box-shadow: none"
+          ngModel
+          name="check-out-date"
+          required
+        />
+      </div>
+      <div class="col-md-4">
+        <button type="submit" class="btn btn-primary search-button">Search</button>
+      </div>
+    </div>
+  </div>
+</form> -->
+
+<!-- ROOMS -->
+<div style="background-color: rgb(180, 178, 178) (128, 128, 128, 0.852)">
+  <div class="container mt-5">
+    <div class="row custom-row mb-2" *ngFor="let room of rooms">
+      <!-- Left column for image -->
+      <div class="col-6">
+        <img
+          src="{{
+            'http://localhost:8080/api/admin/room/downloadFile/' + room.id
+          }}"
+          alt="Room Image"
+          class="img-fluid"
+          style="
+            width: 100%;
+            height: 300px;
+            border-radius: 3px;
+            box-shadow: 2px 2px 2px 2px rgb(44, 43, 43);
+          "
+        />
+      </div>
+
+      <!-- Right column for room details -->
+      <div class="col-6">
+        <h2 style="font-weight: bold">{{ room.description }}</h2>
+
+        <!-- 4-star rating -->
+        <div>
+          <p class="rating">
+            <span
+              class="p-1"
+              style="
+                vertical-align: middle;
+                font-size: small;
+                font-weight: bold;
+                color: white;
+              "
+              >4.5</span
+            >
+            <span
+              style="font-size: medium; vertical-align: middle; color: white"
+              >★</span
+            >
+          </p>
+          <span class="ratings">(528 ratings) - Excellent</span>
+          <p style="color: red; font-size: small; font-weight: bold">
+            All staffs vaccinated with 2 doses
+          </p>
+        </div>
+
+        <!-- Amenities -->
+        <div class="amenities">
+          <ul *ngIf="room.ac">
+            <img src="assets/images/png/004-air-conditioner.png" alt="" />
+            AC
+          </ul>
+          <ul *ngIf="room.tv">
+            <img src="assets/images/png/007-monitor.png" alt="" />
+            TV
+          </ul>
+          <ul *ngIf="room.wifi">
+            <img src="assets/images/png/003-wifi.png" alt="" />
+            Wifi
+          </ul>
+          <ul>
+            <img src="assets/images/png/005-bed.png" alt="" />
+            Bed
+            {{
+              room.bedCount
+            }}
+          </ul>
+          <ul *ngIf="room.powerBackup">
+            <img src="assets/images/png/006-backup.png" alt="" />
+            Power Backup
+          </ul>
+          <ul *ngIf="room.breakfast">
+            <img src="assets/images/png/008-coffee.png" alt="" />
+            Breakfast
+          </ul>
+          <ul *ngIf="room.lunch">
+            <img src="assets/images/png/002-food.png" alt="" />
+            Lunch
+          </ul>
+          <ul *ngIf="room.dinner">
+            <img src="assets/images/png/009-serving-dish.png" alt="" />
+            Dinner
+          </ul>
+          <ul *ngIf="room.parkingFacility">
+            <img src="assets/images/png/001-parking.png" alt="" />
+            Parking Facility
+          </ul>
+          <ul *ngIf="room.cctvCameras">
+            <img src="assets/images/png/010-cctv.png" alt="" />
+            CCTV Cameras
+          </ul>
+        </div>
+
+        <!-- Room Price -->
+        <div class="room-price">
+          <p>
+            <span
+              class="discount"
+              style="font-size: x-large; color: red; font-weight: bold"
+              >₹{{ room.price }}</span
+            >
+            <span class="original-price">{{ room.price * 2 }}</span>
+            <span class="offer">50% off</span>
+          </p>
+          <button
+            class="book-now-btn"
+            (click)="navigateToBookingPage(room.id, room.price)"
+          >
+            Book Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

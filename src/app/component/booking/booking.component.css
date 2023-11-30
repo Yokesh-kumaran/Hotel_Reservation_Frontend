@@ -1,0 +1,14 @@
+.form-container {
+  margin: 0 auto;
+}
+
+.lottie {
+  position: relative;
+}
+
+.top-right {
+  position: absolute;
+  top: 0;
+  margin-left: 800px;
+  margin-top: -20px;
+}

@@ -1,0 +1,47 @@
+.navbar-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 15px;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav a:hover {
+  color: var(--secondary) !important;
+}
+
+.navbar-nav .active {
+  font-weight: bold;
+  color: var(--secondary) !important;
+}
+
+.sideBarItem,
+.sideBarItem > a {
+  color: var(--accent);
+  padding: 8px;
+  font-weight: bold;
+  transition: color 0.5s ease-in-out;
+}
+
+.sideBarItem > a:hover {
+  color: var(--secondary);
+  background-color: var(--black-primary) !important;
+  padding: 8px;
+  font-weight: bold;
+}
+/*
+  .border {
+    border: solid 1px var(--secondary) !important;
+  } */
+
+.sideBarActive > .fa-solid {
+  color: var(--secondary);
+}
+
+.sideBarItem:hover {
+  color: var(--secondary);
+  background-color: var(--black-primary);
+  padding: 8px;
+  border: solid 1px var(--secondary);
+  cursor: pointer;
+}

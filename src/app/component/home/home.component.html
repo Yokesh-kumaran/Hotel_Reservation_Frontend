@@ -1,0 +1,798 @@
+<div style="width: 100%; position: relative;">
+  <img
+    src="assets/homeimage1.jpg"
+    alt="image"
+    style="width: 100%; height: 630px; z-index: 1"
+  />
+  <div
+    style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 630px;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2;
+    "
+  ></div>
+
+  <!-- NAVBAR -->
+  <nav
+    class="navbar navbar-expand-lg bg-transparent"
+    style="height: 80px; position: absolute; top: 0; width: 100%; z-index: 2"
+  >
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img
+          src="assets/images/logo.png"
+          alt="image"
+          height="60px"
+          width="100px"
+        />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: 200px;">
+          <li class="nav-item me-5">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              style="color: rgba(255, 0, 0, 0.897); background: none"
+              href="#"
+              >HOME</a
+            >
+          </li>
+          <li class="nav-item me-5">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              style="color: white; background: none"
+              
+              >ABOUT</a
+            >
+          </li>
+          <li class="nav-item me-5">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              style="color: white; background: none"
+              href="#"
+              >GALLERY</a
+            >
+          </li>
+          <li class="nav-item me-5">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              style="color: white; background: none"
+              href="#"
+              >CONTACT</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              style="color: white; background: none"
+              routerLink="/order"
+              >BOOKINGS</a
+            >
+          </li>
+        </ul>
+        <div *ngIf="!isLoggedIn">
+          <a routerLink="/login"
+            ><img
+              src="assets/images/login.png"
+              alt=""
+              style="height: 40px; width: 40px"
+          /></a>
+        </div>
+        <div *ngIf="isLoggedIn">
+          <a routerLink="/login" (click)="logoutHandler()"
+            ><img
+              src="assets/images/logout.png"
+              style="height: 40px; width: 40px"
+              alt=""
+          /></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Horizontal line with white color -->
+  <hr
+    style="
+      margin: 0;
+      border: 1px solid white;
+      position: absolute;
+      width: 100%;
+      top: 80px;
+      z-index: 2;
+    "
+  />
+
+  <!-- WELCOME TEXT -->
+  <h1
+    style="
+      position: absolute;
+      width: 100%;
+      top: 80px;
+      z-index: 2;
+      text-align: center;
+      margin-top: 200px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 50px;
+      letter-spacing: 2px;
+      color: white;
+    "
+    class="me-auto mb-2 mb-lg-0 mx-auto"
+  >
+    WEL<span style="color: rgba(255, 0, 0, 0.897)">COME</span> TO
+    <span style="color: rgba(255, 0, 0, 0.897)">LUXURY</span> HOTEL
+  </h1>
+
+  <h4
+    style="
+      position: absolute;
+      top: 330px;
+      width: 100%;
+      text-align: center;
+      font-size: 1em;
+      margin: 2em 0;
+      font-weight: 500;
+      letter-spacing: 10px;
+      color: #ffee03;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 15px 0;
+      z-index: 3;
+    "
+  >
+    BOOK YOUR DREAM HOTEL
+  </h4>
+
+  <h5
+    style="
+      color: white;
+      position: absolute;
+      top: 430px;
+      width: 100%;
+      letter-spacing: 5px;
+      text-align: center;
+      z-index: 2;
+    "
+  >
+    Enjoy Your Stay In
+  </h5>
+
+  <h3
+    style="
+      color: rgba(255, 0, 0, 0.897);
+      letter-spacing: 2px;
+      width: 100%;
+      text-align: center;
+      margin-top: 70px;
+      font-weight: bold;
+    "
+  >
+    WELCOME TO PENINSULA!
+  </h3>
+
+  <p
+    class="mt-4"
+    style="
+      color: rgb(137, 137, 137);
+      text-align: justify;
+      margin: 0 180px;
+      letter-spacing: 1px;
+      text-align-last: center;
+      font-family: Arial, Helvetica, sans-serif;
+    "
+  >
+    Lavish bathrooms with upscale features such as heated floors and soaking
+    tubs. High-end, lush linens and
+  </p>
+  <p
+    style="
+      color: rgb(137, 137, 137);
+      text-align: justify;
+      margin: 0 240px;
+      letter-spacing: 1px;
+      text-align-last: center;
+      font-family: Arial, Helvetica, sans-serif;
+    "
+  >
+    towels. Deluxe pillows and mattresses so your sleeping hours are as blissful
+    as your waking ones. Beautiful views in every direction - inside and out.
+  </p>
+</div>
+
+<div class="row mt-5" style="margin: 0 10px">
+  <div class="col-3">
+    <div class="card" style="width: 18rem">
+      <img
+        src="assets/images/DeluxeRoom.jpg"
+        class="card-img-top p-3"
+        alt="..."
+        style="height: 250px; width: 285px"
+      />
+      <div class="card-body">
+        <h5
+          class="card-title"
+          style="
+            width: 100%;
+            text-align: center;
+            margin-top: -10px;
+            color: rgba(255, 0, 0, 0.897);
+          "
+        >
+          Deluxe Room
+        </h5>
+        <p
+          class="card-text"
+          style="
+            color: rgb(137, 137, 137);
+            text-align: justify;
+            text-align-last: center;
+          "
+        >
+          Usually larger than their standard counterparts, may include more
+          high-end amenities.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="card" style="width: 18rem">
+      <img
+        src="assets/images/LuxuryRoom.jpg"
+        class="card-img-top p-3"
+        alt="..."
+        style="height: 250px; width: 285px"
+      />
+      <div class="card-body">
+        <h5
+          class="card-title"
+          style="
+            width: 100%;
+            text-align: center;
+            margin-top: -10px;
+            color: rgba(255, 0, 0, 0.897);
+          "
+        >
+          Luxury Room
+        </h5>
+        <p
+          class="card-text"
+          style="
+            color: rgb(137, 137, 137);
+            text-align: justify;
+            text-align-last: center;
+          "
+        >
+          Lavish bathrooms with upscale features such as heated floors and
+          soaking tubs.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="card" style="width: 18rem">
+      <img
+        src="assets/images/SwimmingPool.jpg"
+        class="card-img-top p-3"
+        alt="..."
+        style="height: 250px; width: 285px"
+      />
+      <div class="card-body">
+        <h5
+          class="card-title"
+          style="
+            width: 100%;
+            text-align: center;
+            margin-top: -10px;
+            color: rgba(255, 0, 0, 0.897);
+          "
+        >
+          Swimming Pool
+        </h5>
+        <p
+          class="card-text"
+          style="
+            color: rgb(137, 137, 137);
+            text-align: justify;
+            text-align-last: center;
+          "
+        >
+          A hotel with a pool offers guests more than just a place to swim and
+          cool off on a hot day.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="card" style="width: 18rem">
+      <img
+        src="https://p.w3layouts.com/demos_new/30-01-2017/resort-demo_Free/1920654907/web/images/8.jpg"
+        class="card-img-top p-3"
+        alt="..."
+        style="height: 250px; width: 285px"
+      />
+      <div class="card-body">
+        <h5
+          class="card-title"
+          style="
+            width: 100%;
+            text-align: center;
+            margin-top: -10px;
+            color: rgba(255, 0, 0, 0.897);
+          "
+        >
+          Spa Care
+        </h5>
+        <p
+          class="card-text"
+          style="
+            color: rgb(137, 137, 137);
+            text-align: justify;
+            text-align-last: center;
+          "
+        >
+          Where people go to exercise and have special treatments in order to
+          improve their health.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <h3
+    style="
+      color: rgba(255, 0, 0, 0.897);
+      letter-spacing: 2px;
+      width: 100%;
+      text-align: center;
+      margin-top: 70px;
+      font-weight: bold;
+    "
+  >
+    CATEGORIES
+  </h3>
+  <div style="width: 100%" class="mt-3">
+    <p
+      style="
+        color: rgb(137, 137, 137);
+        text-align: justify;
+        margin: 0 180px;
+        letter-spacing: 1px;
+        text-align-last: center;
+        font-family: Arial, Helvetica, sans-serif;
+      "
+    >
+      Below are some list of categories the hotel can afford. Each category will
+      have some specific amenities
+    </p>
+    <p
+      style="
+        color: rgb(137, 137, 137);
+        text-align: justify;
+        margin: 0 240px;
+        letter-spacing: 1px;
+        text-align-last: center;
+        font-family: Arial, Helvetica, sans-serif;
+      "
+    >
+      and the price range will be according to that. Please click on the
+      categories below for booking.
+    </p>
+  </div>
+</div>
+
+<!-- FOR GETTING CATEGORIES FROM BACKEND -->
+<div class="container">
+  <div class="row" style="margin-top: 20px">
+    <div class="col" style="height: 200px; width: 200px">
+      <ng-lottie [options]="option1"></ng-lottie>
+    </div>
+    <div class="col" style="height: 200px; width: 200px">
+      <ng-lottie [options]="option2"></ng-lottie>
+    </div>
+    <div class="col" style="height: 200px; width: 200px">
+      <ng-lottie [options]="option3"></ng-lottie>
+    </div>
+  </div>
+  <div class="row">
+    <div
+      class="col d-flex justify-content-center align-items-center"
+      *ngFor="let category of categories"
+    >
+      <button
+        class="glow-on-hover"
+        type="button"
+        (click)="navigateToRoomPage(category.id)"
+      >
+        {{ category.name }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- READ MORE -->
+<div style="margin-top: 60px; width: 100%; text-align: center">
+  <button
+    type="button"
+    class="btn btn-primary"
+    id="button1"
+    style="border-radius: 20px"
+  >
+    Read More
+  </button>
+</div>
+
+<!-- FEATURED FACILITIES -->
+<div class="pt-3" style="background-color: white; margin-top: -20px">
+  <h3
+    style="
+      color: rgb(81, 133, 4);
+      letter-spacing: 2px;
+      width: 100%;
+      text-align: center;
+      margin-top: 70px;
+      font-weight: bold;
+    "
+  >
+    FEATURED FACILITIES
+  </h3>
+
+  <!-- BLACK BAR WITH FEATURED FACILITIES  -->
+  <div class="mt-5" style="background-color: black; width: 100%; height: 130px">
+    <div
+      class="row text-center"
+      style="width: 100; margin-right: 0; margin-bottom: 0"
+    >
+      <div
+        class="col pt-4 hover-effect"
+        style="
+          border-right: 1px solid rgba(255, 255, 255, 0.356);
+          height: 133px;
+        "
+      >
+        <img
+          src="assets/images/restaurant_logo-removebg-preview.png"
+          alt=""
+          height="50px"
+          width="80px"
+        />
+        <h4
+          style="
+            color: rgb(143, 0, 0);
+            font-size: large;
+            font-weight: bold;
+            margin-top: 5px;
+          "
+        >
+          RESTAURANT
+        </h4>
+      </div>
+      <div
+        class="col pt-3 hover-effect"
+        style="
+          border-right: 1px solid rgba(255, 255, 255, 0.356);
+          height: 133px;
+        "
+      >
+        <img
+          src="assets/images/bar_logo-removebg-preview.png"
+          alt=""
+          height="65px"
+          width="90px"
+        />
+        <h4 style="color: rgb(143, 0, 0); font-size: large; font-weight: bold">
+          BAR
+        </h4>
+      </div>
+      <div
+        class="col pt-4 hover-effect"
+        style="
+          border-right: 1px solid rgba(255, 255, 255, 0.356);
+          height: 130px;
+        "
+      >
+        <img
+          src="assets/images/gym_logo-removebg-preview.png"
+          alt=""
+          height="55px"
+          width="70px"
+        />
+        <h4
+          style="
+            color: rgb(143, 0, 0);
+            font-size: large;
+            font-weight: bold;
+            margin-top: 5px;
+          "
+        >
+          GYM
+        </h4>
+      </div>
+      <div class="col pt-1 hover-effect" style="height: 130px">
+        <img
+          src="assets/images/pickup_logo-removebg-preview.png"
+          alt=""
+          height="90px"
+          width="90px"
+        />
+        <h4
+          style="
+            color: rgb(143, 0, 0);
+            font-size: large;
+            font-weight: bold;
+            margin-top: -11px;
+          "
+        >
+          PICKUP
+        </h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IMAGE WITH WHY CHOOSE US  -->
+<div class="container-fluid row">
+  <div class="col p-0 position-relative">
+    <img
+      src="https://p.w3layouts.com/demos_new/30-01-2017/resort-demo_Free/1920654907/web/images/33.jpg"
+      alt=""
+      height="500px"
+      width="626px"
+    />
+    <div class="overlay" (click)="scrollPageUp()" style="cursor: pointer">
+      <div
+        class="text-center text-white position-absolute top-50 start-50 translate-middle"
+      >
+        <h2>Book Now</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="p-4">
+      <h3
+        style="
+          color: rgba(255, 0, 0, 0.897);
+          letter-spacing: 1px;
+          font-weight: bold;
+        "
+      >
+        WHY CHOOSE US?
+      </h3>
+      <p
+        class="mt-2"
+        style="color: rgb(137, 137, 137); letter-spacing: 1px; line-height: 1.6"
+      >
+        Delivering unparalleled hospitality for half a century, our hotel stands
+        as a testament to 50 years of excellence and satisfaction.
+      </p>
+
+      <div
+        class="d-flex align-items-center mt-3"
+        style="background-color: black; height: 40px; width: 100%"
+      >
+        <span
+          class="mx-3"
+          style="color: white; font-weight: bold; cursor: pointer"
+          (click)="toggleRestaurantDescription()"
+          >{{ showRestaurantDescription ? "-" : "+" }}</span
+        >
+        <span style="color: white">Restaurant & Banquets </span>
+      </div>
+      <div
+        *ngIf="showRestaurantDescription"
+        style="color: rgb(137, 137, 137); padding: 20px"
+        class="border border-1 border-dark toggle-content"
+      >
+        Experience exceptional dining and event hosting at our renowned
+        restaurant and banquets.
+      </div>
+
+      <div
+        class="d-flex align-items-center mt-1"
+        style="background-color: black; height: 40px; width: 100%"
+      >
+        <span
+          class="mx-3"
+          style="color: white; font-weight: bold; cursor: pointer"
+          (click)="toggleTransportDescription()"
+          >{{ showTransportDescription ? "-" : "+" }}</span
+        >
+        <span style="color: white">Transportation Included </span>
+      </div>
+      <div
+        *ngIf="showTransportDescription"
+        style="color: rgb(137, 137, 137); padding: 20px"
+        class="border border-1 border-dark toggle-content"
+      >
+        Elevate your stay with our premium transportation services. Enjoy
+        hassle-free travel to and from our hotel.
+      </div>
+
+      <div
+        class="d-flex align-items-center mt-1"
+        style="background-color: black; height: 40px; width: 100%"
+      >
+        <span
+          class="mx-3"
+          style="color: white; font-weight: bold; cursor: pointer"
+          (click)="toggleBestCareDescription()"
+          >{{ showBestCareDescription ? "-" : "+" }}</span
+        >
+        <span style="color: white"
+          >The Best Care For Our Precious Visitors
+        </span>
+      </div>
+      <div
+        *ngIf="showBestCareDescription"
+        style="color: rgb(137, 137, 137); padding: 20px"
+        class="border border-1 border-dark toggle-content"
+      >
+        Experience unparalleled hospitality as we dedicate ourselves to
+        providing the highest level of care and comfort to our cherished
+        visitors.
+      </div>
+
+      <div
+        class="d-flex align-items-center mt-1"
+        style="background-color: black; height: 40px; width: 100%"
+      >
+        <span
+          class="mx-3"
+          style="color: white; font-weight: bold; cursor: pointer"
+          (click)="toggleDeluxeRoomDescription()"
+          >{{ showDeluxeRoomDescription ? "-" : "+" }}</span
+        >
+        <span style="color: white">Pool Deluxe Room </span>
+      </div>
+      <div
+        *ngIf="showDeluxeRoomDescription"
+        style="color: rgb(137, 137, 137); padding: 20px"
+        class="border border-1 border-dark toggle-content"
+      >
+        Indulge in luxury with our Pool Deluxe Rooms. Immerse yourself in
+        sophisticated comfort while enjoying exclusive access to a refreshing
+        private pool.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container-fluid">
+    <div class="row" style="padding: 5%">
+      <div class="col">
+        <h4 class="mb-3 footerH4">QUICK LINKS</h4>
+        <h5 class="footerH5"><span>Home</span></h5>
+        <h5 class="footerH5"><span>About</span></h5>
+        <h5 class="footerH5"><span>Gallery</span></h5>
+        <h5 class="footerH5"><span>Contact</span></h5>
+        <h5 class="footerH5"><span>Bookings</span></h5>
+      </div>
+      <div class="col" style="margin-left: -50px">
+        <h4 class="mb-3 footerH4">ADDRESS</h4>
+        <h5 class="footerH51">1, Dubai cross street</h5>
+        <h5 class="footerH51">Dubai road</h5>
+        <h5 class="footerH51">Dubai</h5>
+        <h5 class="footerH51">Telephone : +1 (734) 123-4567</h5>
+        <h5 class="footerH51">heavenpeninsula@gmail.com</h5>
+      </div>
+      <div class="col">
+        <h4 class="mb-3 footerH4">INSTAGRAM</h4>
+        <div class="row">
+          <div class="col-6">
+            <img
+              src="assets/homeimage1.jpg"
+              alt=""
+              style="height: 90px; width: 140px; cursor: pointer"
+            />
+          </div>
+          <div class="col-6">
+            <img
+              src="assets/homeimage2.jpg"
+              alt=""
+              style="height: 90px; width: 140px; cursor: pointer"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <img
+              src="assets/homeimage3.jpg"
+              alt=""
+              style="height: 90px; width: 140px; cursor: pointer"
+            />
+          </div>
+          <div class="col-6">
+            <img
+              src="assets/images/SwimmingPool.jpg"
+              alt=""
+              style="height: 90px; width: 140px; cursor: pointer"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col" style="margin-left: 40px">
+        <h4 class="mb-3 footerH4">CONNECT WITH US</h4>
+        <div class="hover14 column" style="display: flex; gap: 20px">
+          <div>
+            <figure>
+              <img
+                src="assets/images/fb.png"
+                alt="Logo 1"
+                style="
+                  height: 40px;
+                  width: 40px;
+                  margin-top: -5px;
+                  cursor: pointer;
+                "
+              />
+            </figure>
+          </div>
+
+          <div class="div">
+            <figure>
+              <img
+                src="assets/images/insta.png"
+                alt="Logo 2"
+                style="height: 30px; width: 30px; cursor: pointer"
+              />
+            </figure>
+          </div>
+
+          <div class="div">
+            <div class="figure">
+              <img
+                src="assets/images/twitter.png"
+                alt="Logo 3"
+                style="height: 30px; width: 30px; cursor: pointer"
+              />
+            </div>
+          </div>
+          <div class="div">
+            <div class="figure">
+              <img
+                src="assets/images/snap.png"
+                alt="Logo 4"
+                style="height: 35px; width: 30px; cursor: pointer"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- COPYRIGHT  -->
+<div
+  class="copyright"
+  style="
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 1px;
+  "
+>
+  <p class="pt-3" style="color: white">
+    © 2023 Peninsula Hotel. All rights reserved
+  </p>
+</div>

@@ -1,0 +1,203 @@
+<h3 style="color: red; margin-top: 25px; margin-left: 10px; font-weight: bold">
+  Hi, Welcome Back
+</h3>
+
+<!-- CARDS -->
+<div class="d-flex mt-4">
+  <div
+    class="card me-4"
+    style="
+      width: 15rem;
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+      height: 260px;
+    "
+  >
+    <img
+      src="assets/images/adminBook.jpg"
+      class="card-img-top"
+      style="
+        height: 50px;
+        width: 50px;
+        margin: 20px;
+        border-radius: 10px;
+        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+      "
+      alt="..."
+    />
+    <div class="card-body">
+      <h5
+        class="card-title"
+        style="font-weight: 550; font-size: medium; margin-left: 60px"
+      >
+        Total Booking
+      </h5>
+      <p
+        class="card-text"
+        style="margin-left: 100px; font-weight: 550; font-size: larger"
+      >
+        {{ totalOrders }}
+      </p>
+      <a class="btn btn1 btn-primary"></a>
+    </div>
+  </div>
+
+  <div
+    class="card me-4"
+    style="
+      width: 15rem;
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+      height: 260px;
+    "
+  >
+    <img
+      src="assets/images/adminRoom.jpg"
+      class="card-img-top"
+      style="
+        height: 50px;
+        width: 50px;
+        margin: 20px;
+        border-radius: 10px;
+        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+      "
+      alt="..."
+    />
+    <div class="card-body">
+      <h5
+        class="card-title"
+        style="font-weight: 550; font-size: medium; margin-left: 60px"
+      >
+        Total Rooms
+      </h5>
+      <p
+        class="card-text"
+        style="margin-left: 100px; font-weight: 550; font-size: larger"
+      >
+        {{ totalRooms }}
+      </p>
+      <a class="btn btn2 btn-primary"></a>
+    </div>
+  </div>
+
+  <div
+    class="card me-4"
+    style="
+      width: 15rem;
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+      height: 260px;
+    "
+  >
+    <img
+      src="assets/images/adminUser.jpg"
+      class="card-img-top"
+      style="
+        height: 50px;
+        width: 50px;
+        margin: 20px;
+        border-radius: 10px;
+        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+      "
+      alt="..."
+    />
+    <div class="card-body">
+      <h5
+        class="card-title"
+        style="font-weight: 550; font-size: medium; margin-left: 60px"
+      >
+        New Customers
+      </h5>
+      <p
+        class="card-text"
+        style="margin-left: 100px; font-weight: 550; font-size: larger"
+      >
+        {{ totalUsers }}
+      </p>
+      <a class="btn btn3 btn-primary"></a>
+    </div>
+  </div>
+
+  <div
+    class="card"
+    style="
+      width: 15rem;
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+      height: 260px;
+    "
+  >
+    <img
+      src="assets/images/adminRevenue.jpg"
+      class="card-img-top"
+      style="
+        height: 50px;
+        width: 50px;
+        margin: 20px;
+        border-radius: 10px;
+        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+      "
+      alt="..."
+    />
+    <div class="card-body">
+      <h5
+        class="card-title"
+        style="font-weight: 550; font-size: medium; margin-left: 60px"
+      >
+        Total Revenue
+      </h5>
+      <p
+        class="card-text"
+        style="margin-left: 100px; font-weight: 550; font-size: larger"
+      >
+        ₹{{ totalPrice }}
+      </p>
+      <a class="btn btn4 btn-primary"></a>
+    </div>
+  </div>
+</div>
+
+<!-- CHARTS -->
+<div style="width: 90%; margin-left: 50px">
+  <canvas id="myChart" style="width: 100%; height: 500px"></canvas>
+</div>
+
+<div class="booking_table">
+  <h1 style="color: red;">Booking Details</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Order Id</th>
+        <th scope="col">Room No</th>
+        <th scope="col">Name</th>
+        <th scope="col">Arrive</th>
+        <th scope="col">Depart</th>
+        <th scope="col">Status</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Guest</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <th scope="row">{{ order.id }}</th>
+        <td>{{ order.roomId }}</td>
+        <td>{{ order.firstName }} {{ " " + order.lastName }}</td>
+        <td>{{ order.checkInDate }}</td>
+        <td>{{ order.checkOutDate }}</td>
+        <td class="paid">Paid</td>
+        <td>{{ order.phoneNumber }}</td>
+        <td>
+          Adults: {{ order.adults }} <br />
+          Children: {{ order.children }}
+        </td>
+        <td>
+          <button class="btn" (click)="deleteOrder(order.id)">
+            <img
+              src="assets/images/deleteIcon.png"
+              alt=""
+              height="25px"
+              width="28px"
+            />
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,18 @@
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background-color: rgb(5, 130, 248);
+}
+
+.about-text {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 1px;
+  color: rgba(255, 0, 0, 0.897);
+  font-weight: bold;
+}

@@ -1,0 +1,47 @@
+.col-centered {
+  text-align: center;
+  padding-right: 150px;
+}
+
+.navigateIcon {
+  margin-top: 20px;
+  color: var(--secondary-500);
+  font-weight: bold;
+}
+
+.greaterThan {
+  color: black;
+  font-weight: bold;
+}
+
+.content {
+  color: var(--secondary-500);
+}
+
+.navigation-container {
+  margin-left: 3px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.navigateIcon,
+.greaterThan,
+.content {
+  margin: 0;
+}
+
+.table {
+  margin-top: 5px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table tbody tr:hover {
+  transform: scale(1.01, 1.01); 
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.table tbody tr:hover td {
+  background-color: #d3d3d3; 
+}

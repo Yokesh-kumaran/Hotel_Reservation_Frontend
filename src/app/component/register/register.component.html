@@ -1,0 +1,113 @@
+<div class="register-page" style="width: 100%; min-height: 140vh">
+  <a routerLink="/"
+    ><img src="assets/images/back.png" alt="" style="height: 70px; width: 70px"
+  /></a>
+  <div style="height: 400px; width: 400px; margin-left: 0">
+    <ng-lottie [options]="option1"></ng-lottie>
+  </div>
+  <div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+    <h3 style="color: #ffffff">Register Here</h3>
+
+    <label for="username" style="color: #ffffff">Username</label>
+    <input
+      style="color: #ffffff"
+      type="text"
+      placeholder="Username"
+      id="username"
+      name="username"
+      ngModel
+      required
+      #modelUsername="ngModel"
+      [ngClass]="
+        modelUsername.invalid && modelUsername.dirty ? 'is-invalid' : ''
+      "
+      [(ngModel)]="username"
+    />
+    <div
+      *ngIf="modelUsername.invalid && modelUsername.dirty"
+      class="invalid-feedback"
+    >
+      Username is required...
+    </div>
+
+    <label for="name" style="color: #ffffff">Name</label>
+    <input
+      style="color: #ffffff"
+      type="text"
+      placeholder="Name"
+      id="name"
+      name="name"
+      ngModel
+      required
+      #modelName="ngModel"
+      [ngClass]="modelName.invalid && modelName.dirty ? 'is-invalid' : ''"
+      [(ngModel)]="name"
+    />
+    <div *ngIf="modelName.invalid && modelName.dirty" class="invalid-feedback">
+      Name is required...
+    </div>
+
+    <label for="password" style="color: #ffffff">Password</label>
+    <input
+      style="color: #ffffff"
+      type="password"
+      placeholder="Password"
+      id="password"
+      name="password"
+      ngModel
+      required
+      #modelPassword="ngModel"
+      [ngClass]="
+        modelPassword.invalid && modelPassword.dirty ? 'is-invalid' : ''
+      "
+      [(ngModel)]="password"
+    />
+    <div
+      *ngIf="modelPassword.invalid && modelPassword.dirty"
+      class="invalid-feedback"
+    >
+      Password is required...
+    </div>
+
+    <label for="password" style="color: #ffffff">Password</label>
+    <input
+      style="color: #ffffff"
+      type="password"
+      placeholder="Confirm Password"
+      id="confirmPassword"
+      name="confirmPassword"
+      ngModel
+      required
+      #modelConfirmPassword="ngModel"
+      [ngClass]="
+        modelConfirmPassword.invalid && modelConfirmPassword.dirty
+          ? 'is-invalid'
+          : ''
+      "
+      [(ngModel)]="confirmPassword"
+    />
+    <div
+      *ngIf="modelConfirmPassword.invalid && modelConfirmPassword.dirty"
+      class="invalid-feedback"
+    >
+      Confirm Password is required...
+    </div>
+
+    <p class="error" [ngClass]="error.length > 0 ? 'visible' : 'invisible'">
+      {{ error }}
+    </p>
+
+    <div class="d-flex align-items-center mt-2">
+      <span style="color: #ffffff">Already registered?</span>
+      <a routerLink="/login" class="text-primary text-decoration-none px-2"
+        >Login here</a
+      >
+    </div>
+
+    <button style="color: black">Register</button>
+  </form>
+</div>

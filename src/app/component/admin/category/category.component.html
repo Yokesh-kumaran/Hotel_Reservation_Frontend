@@ -1,0 +1,100 @@
+<div class="navigation-container">
+  <p class="navigateIcon">All Categories&nbsp;</p>
+  <p class="greaterThan">> &nbsp;</p>
+  <img src="assets/images/category.png" height="16px" width="16px" alt="" />
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th class="col">Category Id</th>
+      <th class="col">Name</th>
+      <th class="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let category of categories">
+      <td class="col">{{ category.id }}</td>
+      <td class="col">{{ category.name }}</td>
+      <td class="col">
+        <button
+          (click)="edit(category)"
+          type="button"
+          class="btn btn-primary btn-sm mr-2"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          data-bs-whatever="@mdo"
+        >
+          <img src="assets/images/edit.png" height="15px" width="15px" alt="" />
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  (hidden.bs.modal)="onModalHidden()"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          (ngSubmit)="editCategory(editCategoryForm)"
+          #editCategoryForm="ngForm"
+        >
+          <input
+            type="hidden"
+            id="id"
+            name="id"
+            [(ngModel)]="selectedCategory.id"
+          />
+
+          <div class="mb-3">
+            <label for="category" class="form-label">Category Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="category"
+              name="category"
+              ngModel
+              required
+              #modelCategory="ngModel"
+              [ngClass]="
+                modelCategory.invalid && modelCategory.dirty ? 'is-invalid' : ''
+              "
+              [(ngModel)]="selectedCategory.name"
+            />
+            <div
+              *ngIf="modelCategory.invalid && modelCategory.dirty"
+              class="invalid-feedback"
+            >
+              Enter Category name
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-success text-dark w-100"
+            style="font-size: large"
+            data-bs-dismiss="modal"
+          >
+            Update
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

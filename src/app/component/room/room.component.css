@@ -1,0 +1,109 @@
+.custom-row {
+  border: 1px solid black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.book-now-btn {
+  padding: 7px;
+  position: absolute;
+  background-color: rgb(5, 174, 5);
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 430px;
+  margin-top: -60px;
+}
+
+.filter {
+  background-image: url(https://png.pngtree.com/background/20230516/original/pngtree-dark-hallway-containing-some-wood-paneling-picture-image_2581689.jpg);
+  background-position: center;
+  width: 100%;
+  height: 200px;
+}
+
+.date-input {
+  margin-right: 10px;
+}
+
+.search-button {
+  background-color: green;
+  color: white;
+}
+
+/* RATING  */
+.rating {
+  background-color: rgb(5, 174, 5);
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.ratings {
+  margin-left: 3px;
+  font-size: small;
+  color: rgb(137, 137, 137);
+}
+
+.amenities {
+  margin-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.amenities ul {
+  color: rgb(137, 137, 137);
+  margin: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-bottom: 13px;
+  font-size: smaller;
+}
+
+.amenities img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  transition: 0.8s;
+}
+
+.amenities img:hover {
+  width: 26px;
+  height: 26px;
+  margin-right: 5px;
+  transition: 0.8s;
+}
+
+.original-price {
+  margin-left: 10px;
+  color: rgb(137, 137, 137);
+  text-decoration: line-through;
+  font-size: smaller;
+  padding-bottom: 5px;
+}
+
+.offer {
+  margin-left: 10px;
+  color: rgb(250, 114, 3);
+  font-size: smaller;
+  padding-bottom: 5px;
+}
+
+.dateFilter{
+ vertical-align: middle;
+ padding-top: 80px;
+ margin-left: 220px;
+}
+
+.check-in{
+  color: white;
+}
+
+.checkIn{
+  margin-top: -43px;
+}
+
+.checkOut{
+  margin-top: -43px;
+}

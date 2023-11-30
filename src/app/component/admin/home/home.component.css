@@ -1,0 +1,76 @@
+.btn1 {
+  height: 5px;
+  width: 200px;
+  margin-top: 8px;
+  background: linear-gradient(
+    to right,
+    #6b05c8 0%,
+    #b575f0 50%,
+    #ffffff 50%,
+    #ffffff 100%
+  );
+  border: 1px solid black;
+  margin-left: -10px;
+}
+
+.btn2 {
+  height: 5px;
+  width: 200px;
+  margin-top: 8px;
+  background: linear-gradient(
+    to right,
+    #c88405 0%,
+    #f0b775 50%,
+    #ffffff 50%,
+    #ffffff 100%
+  );
+  border: 1px solid black;
+  margin-left: -10px;
+}
+
+.btn3 {
+  height: 5px;
+  width: 200px;
+  margin-top: 8px;
+  background: linear-gradient(
+    to right,
+    #05c80f 0%,
+    #75f075 50%,
+    #ffffff 50%,
+    #ffffff 100%
+  );
+  border: 1px solid black;
+  margin-left: -10px;
+}
+
+.btn4 {
+  height: 5px;
+  width: 200px;
+  margin-top: 8px;
+  background: linear-gradient(
+    to right,
+    #058ac8 0%,
+    #75cdf0 50%,
+    #ffffff 50%,
+    #ffffff 100%
+  );
+  border: 1px solid black;
+  margin-left: -10px; 
+}
+
+.card-body{
+  margin-top: -85px;
+  margin-left: 10px;
+}
+
+.booking_table {
+  margin-top: -250px;
+}
+
+.paid {
+  color: #038a09;
+}
+
+.card{
+  height: 150px !important;
+}

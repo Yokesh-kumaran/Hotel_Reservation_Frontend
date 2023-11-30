@@ -1,0 +1,211 @@
+<div class="navigation-container">
+  <p class="navigateIcon">All Rooms&nbsp;</p>
+  <p class="greaterThan">> &nbsp;</p>
+  <img src="assets/images/room.png" height="16px" width="16px" alt="" />
+</div>
+
+<!-- FOR ADDING ROOM -->
+<div class="d-flex text-align-end" style="margin-top: -30px;">
+  <button
+    type="button"
+    class="btn btn-primary text-warning ms-auto"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    data-bs-whatever="@mdo"
+    style="border: none; background: none; cursor: pointer"
+  >
+    <img src="assets/images/plus.png" height="40px" width="40px" alt="" />
+  </button>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Room No</th>
+      <th scope="col">Photo</th>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+      <th scope="col">Room type</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let room of rooms">
+      <td>{{ room.id }}</td>
+      <td>
+        <img
+          src="{{
+            'http://localhost:8080/api/admin/room/downloadFile/' + room.id
+          }}"
+          style="height: 40px; width: 40px; border-radius: 50%"
+        />
+      </td>
+      <td>{{ room.description }}</td>
+      <td>{{ room.price }}</td>
+      <td>{{ room.categoryName }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-primary btn-sm mr-2"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          data-bs-whatever="@mdo"
+          (click)="edit(room)"
+          style="border: none; background: none; cursor: pointer"
+        >
+          <img src="assets/images/edit.png" height="20px" width="20px" alt="" />
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm"
+          (click)="deleteRoomById(room.id)"
+          style="border: none; background: none; cursor: pointer"
+        >
+          <img
+            src="assets/images/deleteIcon.png"
+            alt=""
+            height="20px"
+            width="20px"
+          />
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  (hidden.bs.modal)="onModalHidden()"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="addRoom(addRoomForm)" #addRoomForm="ngForm">
+          <input
+            type="hidden"
+            id="id"
+            name="id"
+            [(ngModel)]="selectedRoom.id"
+          />
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <textarea
+              class="form-control"
+              id="description"
+              name="description"
+              ngModel
+              required
+              #modelDescription="ngModel"
+              [ngClass]="
+                modelDescription.invalid && modelDescription.dirty
+                  ? 'is-invalid'
+                  : ''
+              "
+              [(ngModel)]="selectedRoom.description"
+            ></textarea>
+            <div
+              *ngIf="modelDescription.invalid && modelDescription.dirty"
+              class="invalid-feedback"
+            >
+              Description field is required...
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="photo" class="form-label">Choose Image</label>
+            <input
+              type="file"
+              class="form-control"
+              id="customFile"
+              ngModel
+              (change)="onFileChange($event)"
+              name="photo"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="price" class="form-label">Price:</label>
+            <input
+              type="number"
+              class="form-control"
+              id="price"
+              name="price"
+              ngModel
+              required
+              pattern="^\d+(\.\d{1,2})?$"
+              #modelPrice="ngModel"
+              [ngClass]="
+                modelPrice.invalid && modelPrice.dirty ? 'is-invalid' : ''
+              "
+              [(ngModel)]="selectedRoom.price"
+            />
+            <div
+              *ngIf="modelPrice.invalid && modelPrice.dirty"
+              class="invalid-feedback"
+            >
+              Enter valid price
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="category" class="form-label">Category:</label>
+            <select
+              class="form-select"
+              id="category"
+              name="categoryId"
+              ngModel
+              required
+              minlength="1"
+              #modelCategoryId="ngModel"
+              [(ngModel)] = "selectedCategoryId"
+              [ngClass]="
+                modelCategoryId.invalid && modelCategoryId.dirty
+                  ? 'is-invalid'
+                  : ''
+              "
+              [(ngModel)]="selectedRoom.categoryId"
+            >
+              <option
+                value="0"
+                disabled
+              >
+                Select Category
+              </option>
+              <option *ngFor="let category of categories" [value]="category.id">
+                {{ category.name }}
+              </option>
+            </select>
+            <div
+              *ngIf="modelCategoryId.invalid && modelCategoryId.dirty"
+              class="invalid-feedback"
+            >
+              Category should not be empty
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-success text-dark w-100"
+            style="font-size: large"
+            data-bs-dismiss="modal"
+          >
+            {{ editId === 0 ? "Add" : "Update" }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

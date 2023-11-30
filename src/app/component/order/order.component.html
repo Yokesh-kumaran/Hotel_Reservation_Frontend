@@ -1,0 +1,137 @@
+<nav
+  class="navbar navbar-expand-lg"
+  style="height: 80px; width: 100%; z-index: 2; background-color: black"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">
+      <img
+        src="assets/images/logo.png"
+        alt="image"
+        height="60px"
+        width="100px"
+      />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+        <li class="nav-item me-5">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            style="color: white; background: none"
+            routerLink="/"
+            onmouseover="this.style.color='red'"
+            onmouseout="this.style.color='white'"
+            >HOME</a
+          >
+        </li>
+        <li class="nav-item me-5">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            style="color: white; background: none"
+            href="#"
+            onmouseover="this.style.color='red'"
+            onmouseout="this.style.color='white'"
+            >ABOUT</a
+          >
+        </li>
+        <li class="nav-item me-5">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            style="color: white; background: none"
+            href="#"
+            onmouseover="this.style.color='red'"
+            onmouseout="this.style.color='white'"
+            >GALLERY</a
+          >
+        </li>
+        <li class="nav-item me-5">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            style="color: white; background: none"
+            href="#"
+            onmouseover="this.style.color='red'"
+            onmouseout="this.style.color='white'"
+            >CONTACT</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            style="color: red; background: none"
+            routerLink="/order"
+            >BOOKINGS</a
+          >
+        </li>
+      </ul>
+      <div *ngIf="isLoggedIn">
+        <a routerLink="/" style="color: white"
+          ><img
+            src="assets/images/logout.png"
+            alt=""
+            style="height: 40px; width: 40px"
+        /></a>
+      </div>
+      <div *ngIf="!isLoggedIn">
+        <a routerLink="/login" style="color: white"
+          ><img
+            src="assets/images/login.png"
+            alt=""
+            style="height: 40px; width: 40px"
+        /></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="table1" *ngIf="isOrdered">
+  <h1 style="color: red; margin-left: 10px;">Your Orders</h1>
+  <table class="table">
+    <thead class="thead">
+      <tr>
+        <th scope="col">Booking Id</th>
+        <th scope="col">Room Id</th>
+        <th scope="col">Check in</th>
+        <th scope="col">Check out</th>
+        <th scope="col">Status</th>
+        <th scope="col">Guest</th>
+      </tr>
+    </thead>
+    <tbody class="tbody">
+      <tr *ngFor="let order of orders">
+        <td>{{ order.id }}</td>
+        <td>{{ order.roomId }}</td>
+        <td>{{ order.checkInDate }}</td>
+        <td>{{ order.checkOutDate }}</td>
+        <td style="color: green">Booked</td>
+        <td>
+          Adults - {{ order.adults }} <br />
+          Children - {{ order.children }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="!isOrdered">
+  <div class="lottie">
+    <ng-lottie [options]="option1"></ng-lottie>
+    <h1 style="color: red; font-weight: bold; margin-left: 100px">
+      No Orders!!!
+    </h1>
+  </div>
+</div>

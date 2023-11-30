@@ -1,1 +1,196 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Exo+2&display=swap");
+
+:root {
+  --primary-50: #f0f0f0;
+  --primary-100: #fef3c7;
+  --primary-300: #fcd34d;
+  --primary-500: #f59e0b;
+  --primary-600: #d97706;
+  --primary-700: #b45309;
+  --primary-900: #78350f;
+  --secondary-50: rgb(26, 72, 200);
+  --secondary-100: #f1f5f9;
+  --secondary-500: #64748b;
+  --secondary-900: #0f172a;
+  --red-100: #fee2e2;
+  --red-300: #fca5a5;
+  --red-500: #ef4444;
+  --red-700: #b91c1c;
+  --green-300: #bef264;
+  --green-500: #84cc16;
+  --green-700: #4d7c0f;
+  --border-radius: 4px;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--primary-50);
+}
+
+/* text */
+.text {
+  color: var(--red-700) !important;
+}
+
+.white-text {
+  color: white !important;
+}
+
+/* background */
+.bg-primary {
+  background-color: var(--primary-600) !important;
+}
+
+/* button */
+.btn {
+  border-radius: var(--border-radius);
+}
+
+.btn-primary {
+  color: var(--primary-50);
+  background: var(--secondary-50);
+  transition-duration: 0.5s;
+  border: none;
+}
+
+/* .btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  color: var(--secondary-100);
+  background: var(--green-700) !important;
+  transition-duration: 0.5s;
+  border: none;
+} */
+
+.btn-danger {
+  color: var(--secondary-100);
+  background: var(--red-500);
+  border: none;
+}
+
+.btn-danger:hover {
+  color: var(--secondary-100);
+  background: var(--red-700);
+  border: none;
+}
+
+.btn-success {
+  color: var(--secondary-100);
+  background: var(--green-500);
+  border: none;
+}
+
+.btn-success:hover {
+  color: var(--secondary-100);
+  background: var(--green-700);
+  border: none;
+}
+
+/* form */
+.form-control,
+.form-control:focus {
+  color: var(--secondary-500);
+  border-color: var(--secondary-900);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem var(--secondary-500);
+}
+
+.form-label {
+  color: var(--red-700);
+}
+
+/* background color */
+.bg-body-primary {
+  background-color: rgb(212, 212, 212);
+}
+
+/* Custom */
+.error {
+  background-color: var(--red-100);
+  margin: 8px 0px;
+  padding: 2px 6px;
+  display: block;
+  color: var(--red-700);
+  border-radius: var(--border-radius);
+  height: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.sideBarActive,
+.sideBarActive > a,
+.sideBarActive > a:hover,
+.sideBarActive > li:active {
+  color: var(--primary-500);
+  background-color: var(--primary-50) !important;
+  padding: 8px;
+}
+ 
+.sideBarItem,
+.sideBarItem > a {
+  color: var(--primary-500);
+  padding: 8px;
+}
+.active {
+  background-color: var(--primary-100);
+}
+
+.adminImage {
+  margin-left: 65px;
+  margin-bottom: 20px;
+}
+
+.adminImage1 {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(233, 230, 230, 0.3);
+}
+
+.adminName{
+  font-size: small;
+  font-weight: 550;
+  margin-top: 2px;
+  margin-left: 5px;
+}
+
+.adminRole{
+  font-size:smaller;
+  color: var(--secondary-500);
+  margin-top: -20px;
+  margin-left: 8px;
+}
+
+.loader {
+  position: absolute;
+  min-height: 100vh;
+  min-width: 100vw;
+  opacity: 0.5;
+  background-color: #000;
+  z-index: 99;
+  left: 0;
+  top: 0;
+}
+
+.lottie-loader {
+  width: 150px !important;
+  height: 150px !important;
+  position: absolute;
+  top: 40%;
+  left: 45%;
+}
+
+.mat-snack-bar-container {
+  background-color: #333 !important;
+  color: #fff !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+  padding: 10px !important;
+}
+
+.mat-snack-bar-action {
+  color: #fff !important;
+  cursor: pointer !important;
+}
+
+.mat-simple-snackbar {
+  font-size: 14px;
+}
