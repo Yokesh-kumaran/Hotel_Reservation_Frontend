@@ -28,11 +28,12 @@
     ➡️ '🗃️-MySql' for Database 
 
 ## Screenshots  
-🔗 https://github.com/Yokesh-kumaran/Hotel_Reservation_Frontend/blob/master/screenshots/hotel1.png
+<img width="953" alt="hotel1" src="https://github.com/Yokesh-kumaran/Spring-Boot-Hotel-Reservation_Backend/assets/145538095/19457a19-7411-43d2-8d41-afe3b7fa661a">
 
-🔗 https://github.com/Yokesh-kumaran/Hotel_Reservation_Frontend/blob/master/screenshots/hotel2.png
+<img width="949" alt="hotel2" src="https://github.com/Yokesh-kumaran/Spring-Boot-Hotel-Reservation_Backend/assets/145538095/8fe18b03-99b0-4f62-8af1-3bc87768194e">
 
-🔗 https://github.com/Yokesh-kumaran/Hotel_Reservation_Frontend/blob/master/screenshots/hotel3.png
+<img width="952" alt="hotel3" src="https://github.com/Yokesh-kumaran/Spring-Boot-Hotel-Reservation_Backend/assets/145538095/af055f5d-6027-4ff4-b193-e922e61451a5">
+
 
 ## Challanges
     🔴 Filtering with date
@@ -51,11 +52,8 @@
 Backend  
 🔗 https://github.com/Yokesh-kumaran/Spring-Boot-Hotel-Reservation_Backend
 
-
-
-
-
-
 ## Mysql Schema
+<img width="598" alt="db_schema" src="https://github.com/Yokesh-kumaran/Spring-Boot-Hotel-Reservation_Backend/assets/145538095/ce7f021c-df62-463d-9983-da2105e5f1f3">
 
 ## Demo Video Url
+🔗 https://drive.google.com/file/d/1_jwexJW0cw9qZMgSj2h0KuDZm93AurwC/view?usp=sharing
