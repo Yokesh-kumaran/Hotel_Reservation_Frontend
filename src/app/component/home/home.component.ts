@@ -98,5 +98,6 @@ export class HomeComponent implements OnInit {
   //LOGOUT HANDLER
   logoutHandler(){
     this.authService.logout();
+    this.router.navigate(["/"]);
   }
 }

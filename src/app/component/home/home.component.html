@@ -1,4 +1,4 @@
-<div style="width: 100%; position: relative;">
+<div style="width: 100%; position: relative">
   <img
     src="assets/homeimage1.jpg"
     alt="image"
@@ -42,13 +42,13 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: 200px;">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: 200px">
           <li class="nav-item me-5">
             <a
               class="nav-link active"
               aria-current="page"
               style="color: rgba(255, 0, 0, 0.897); background: none"
-              href="#"
+              href="/"
               >HOME</a
             >
           </li>
@@ -57,7 +57,7 @@
               class="nav-link active"
               aria-current="page"
               style="color: white; background: none"
-              
+              routerLink="/about"
               >ABOUT</a
             >
           </li>
@@ -98,10 +98,11 @@
           /></a>
         </div>
         <div *ngIf="isLoggedIn">
-          <a routerLink="/login" (click)="logoutHandler()"
+          <a
             ><img
+              (click)="logoutHandler()"
               src="assets/images/logout.png"
-              style="height: 40px; width: 40px"
+              style="height: 40px; width: 40px; cursor: pointer;"
               alt=""
           /></a>
         </div>
@@ -585,12 +586,17 @@
 
       <div
         class="d-flex align-items-center mt-3"
-        style="background-color: black; height: 40px; width: 100%"
+        style="
+          background-color: black;
+          height: 40px;
+          width: 100%;
+          cursor: pointer;
+        "
+        (click)="toggleRestaurantDescription()"
       >
         <span
           class="mx-3"
           style="color: white; font-weight: bold; cursor: pointer"
-          (click)="toggleRestaurantDescription()"
           >{{ showRestaurantDescription ? "-" : "+" }}</span
         >
         <span style="color: white">Restaurant & Banquets </span>
@@ -606,12 +612,17 @@
 
       <div
         class="d-flex align-items-center mt-1"
-        style="background-color: black; height: 40px; width: 100%"
+        style="
+          background-color: black;
+          height: 40px;
+          width: 100%;
+          cursor: pointer;
+        "
+        (click)="toggleTransportDescription()"
       >
         <span
           class="mx-3"
           style="color: white; font-weight: bold; cursor: pointer"
-          (click)="toggleTransportDescription()"
           >{{ showTransportDescription ? "-" : "+" }}</span
         >
         <span style="color: white">Transportation Included </span>
@@ -627,12 +638,17 @@
 
       <div
         class="d-flex align-items-center mt-1"
-        style="background-color: black; height: 40px; width: 100%"
+        style="
+          background-color: black;
+          height: 40px;
+          width: 100%;
+          cursor: pointer;
+        "
+        (click)="toggleBestCareDescription()"
       >
         <span
           class="mx-3"
           style="color: white; font-weight: bold; cursor: pointer"
-          (click)="toggleBestCareDescription()"
           >{{ showBestCareDescription ? "-" : "+" }}</span
         >
         <span style="color: white"
@@ -651,12 +667,17 @@
 
       <div
         class="d-flex align-items-center mt-1"
-        style="background-color: black; height: 40px; width: 100%"
+        style="
+          background-color: black;
+          height: 40px;
+          width: 100%;
+          cursor: pointer;
+        "
+        (click)="toggleDeluxeRoomDescription()"
       >
         <span
           class="mx-3"
           style="color: white; font-weight: bold; cursor: pointer"
-          (click)="toggleDeluxeRoomDescription()"
           >{{ showDeluxeRoomDescription ? "-" : "+" }}</span
         >
         <span style="color: white">Pool Deluxe Room </span>

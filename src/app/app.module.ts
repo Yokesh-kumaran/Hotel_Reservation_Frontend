@@ -23,6 +23,7 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutComponent } from './component/about/about.component';
 import { OrderComponent } from './component/order/order.component';
+import { NavbarComponent } from './component/navbar/navbar.component';
 
 export function playerFactory() {
   return player;
@@ -42,6 +43,7 @@ export function playerFactory() {
     RoomComponent,
     AboutComponent,
     OrderComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

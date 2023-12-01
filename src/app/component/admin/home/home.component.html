@@ -1,165 +1,178 @@
-<h3 style="color: red; margin-top: 25px; margin-left: 10px; font-weight: bold">
+<h3 style="color: red; margin-top: 25px; margin-left: 40px; font-weight: bold">
   Hi, Welcome Back
 </h3>
 
 <!-- CARDS -->
-<div class="d-flex mt-4">
-  <div
-    class="card me-4"
-    style="
-      width: 15rem;
-      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
-      height: 260px;
-    "
-  >
-    <img
-      src="assets/images/adminBook.jpg"
-      class="card-img-top"
-      style="
-        height: 50px;
-        width: 50px;
-        margin: 20px;
-        border-radius: 10px;
-        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
-      "
-      alt="..."
-    />
-    <div class="card-body">
-      <h5
-        class="card-title"
-        style="font-weight: 550; font-size: medium; margin-left: 60px"
-      >
-        Total Booking
-      </h5>
-      <p
-        class="card-text"
-        style="margin-left: 100px; font-weight: 550; font-size: larger"
-      >
-        {{ totalOrders }}
-      </p>
-      <a class="btn btn1 btn-primary"></a>
+
+<div class="row d-flex">
+  <div class="col-6 d-flex">
+    <!-- CHARTS -->
+    <div style="width: 140%; margin-left: -150px; margin-top: -20px;">
+      <canvas id="myChart" style="width: 1000px; height: 1000px"></canvas>
     </div>
   </div>
-
-  <div
-    class="card me-4"
-    style="
-      width: 15rem;
-      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
-      height: 260px;
-    "
-  >
-    <img
-      src="assets/images/adminRoom.jpg"
-      class="card-img-top"
-      style="
-        height: 50px;
-        width: 50px;
-        margin: 20px;
-        border-radius: 10px;
-        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
-      "
-      alt="..."
-    />
-    <div class="card-body">
-      <h5
-        class="card-title"
-        style="font-weight: 550; font-size: medium; margin-left: 60px"
-      >
-        Total Rooms
-      </h5>
-      <p
-        class="card-text"
-        style="margin-left: 100px; font-weight: 550; font-size: larger"
-      >
-        {{ totalRooms }}
-      </p>
-      <a class="btn btn2 btn-primary"></a>
+  <div class="col-6 d-flex flex-column" style="margin-left: -50px; margin-top: 50px;">
+    <div class="d-flex">
+      <div class="">
+        <div
+          class="card me-4"
+          style="
+            width: 15rem;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+            height: 260px;
+          "
+        >
+          <img
+            src="assets/images/adminBook.jpg"
+            class="card-img-top"
+            style="
+              height: 50px;
+              width: 50px;
+              margin: 20px;
+              border-radius: 10px;
+              box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+            "
+            alt="..."
+          />
+          <div class="card-body">
+            <h5
+              class="card-title"
+              style="font-weight: 550; font-size: medium; margin-left: 60px"
+            >
+              Total Booking
+            </h5>
+            <p
+              class="card-text"
+              style="margin-left: 100px; font-weight: 550; font-size: larger"
+            >
+              {{ totalOrders }}
+            </p>
+            <a class="btn btn1 btn-primary"></a>
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <div
+          class="card me-4"
+          style="
+            width: 15rem;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+            height: 260px;
+          "
+        >
+          <img
+            src="assets/images/adminRoom.jpg"
+            class="card-img-top"
+            style="
+              height: 50px;
+              width: 50px;
+              margin: 20px;
+              border-radius: 10px;
+              box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+            "
+            alt="..."
+          />
+          <div class="card-body">
+            <h5
+              class="card-title"
+              style="font-weight: 550; font-size: medium; margin-left: 60px"
+            >
+              Total Rooms
+            </h5>
+            <p
+              class="card-text"
+              style="margin-left: 100px; font-weight: 550; font-size: larger"
+            >
+              {{ totalRooms }}
+            </p>
+            <a class="btn btn2 btn-primary"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex mt-3">
+      <div class="">
+        <div
+          class="card me-4"
+          style="
+            width: 15rem;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+            height: 260px;
+          "
+        >
+          <img
+            src="assets/images/adminUser.jpg"
+            class="card-img-top"
+            style="
+              height: 50px;
+              width: 50px;
+              margin: 20px;
+              border-radius: 10px;
+              box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+            "
+            alt="..."
+          />
+          <div class="card-body">
+            <h5
+              class="card-title"
+              style="font-weight: 550; font-size: medium; margin-left: 60px"
+            >
+              New Customers
+            </h5>
+            <p
+              class="card-text"
+              style="margin-left: 100px; font-weight: 550; font-size: larger"
+            >
+              {{ totalUsers }}
+            </p>
+            <a class="btn btn3 btn-primary"></a>
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <div
+          class="card"
+          style="
+            width: 15rem;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+            height: 260px;
+          "
+        >
+          <img
+            src="assets/images/adminRevenue.jpg"
+            class="card-img-top"
+            style="
+              height: 50px;
+              width: 50px;
+              margin: 20px;
+              border-radius: 10px;
+              box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+            "
+            alt="..."
+          />
+          <div class="card-body">
+            <h5
+              class="card-title"
+              style="font-weight: 550; font-size: medium; margin-left: 60px"
+            >
+              Total Revenue
+            </h5>
+            <p
+              class="card-text"
+              style="margin-left: 100px; font-weight: 550; font-size: larger"
+            >
+              ₹{{ totalPrice }}
+            </p>
+            <a class="btn btn4 btn-primary"></a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div
-    class="card me-4"
-    style="
-      width: 15rem;
-      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
-      height: 260px;
-    "
-  >
-    <img
-      src="assets/images/adminUser.jpg"
-      class="card-img-top"
-      style="
-        height: 50px;
-        width: 50px;
-        margin: 20px;
-        border-radius: 10px;
-        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
-      "
-      alt="..."
-    />
-    <div class="card-body">
-      <h5
-        class="card-title"
-        style="font-weight: 550; font-size: medium; margin-left: 60px"
-      >
-        New Customers
-      </h5>
-      <p
-        class="card-text"
-        style="margin-left: 100px; font-weight: 550; font-size: larger"
-      >
-        {{ totalUsers }}
-      </p>
-      <a class="btn btn3 btn-primary"></a>
-    </div>
-  </div>
-
-  <div
-    class="card"
-    style="
-      width: 15rem;
-      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
-      height: 260px;
-    "
-  >
-    <img
-      src="assets/images/adminRevenue.jpg"
-      class="card-img-top"
-      style="
-        height: 50px;
-        width: 50px;
-        margin: 20px;
-        border-radius: 10px;
-        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
-      "
-      alt="..."
-    />
-    <div class="card-body">
-      <h5
-        class="card-title"
-        style="font-weight: 550; font-size: medium; margin-left: 60px"
-      >
-        Total Revenue
-      </h5>
-      <p
-        class="card-text"
-        style="margin-left: 100px; font-weight: 550; font-size: larger"
-      >
-        ₹{{ totalPrice }}
-      </p>
-      <a class="btn btn4 btn-primary"></a>
-    </div>
-  </div>
-</div>
-
-<!-- CHARTS -->
-<div style="width: 90%; margin-left: 50px">
-  <canvas id="myChart" style="width: 100%; height: 500px"></canvas>
 </div>
 
 <div class="booking_table">
-  <h1 style="color: red;">Booking Details</h1>
+  <h1 style="color: red">Booking Details</h1>
   <table class="table">
     <thead>
       <tr>

@@ -57,17 +57,17 @@ export class AdminCategoryComponent implements OnInit {
 
       this.categoryService.updateCategory(selectedCategory).subscribe(
         (response) => {
-          this.snackBar.open('Category edited successfully', 'Close', {
-            duration: 3000,
-            horizontalPosition: 'right',
-            verticalPosition: 'bottom',
-          });
+          // this.snackBar.open('Category edited successfully', 'Close', {
+          //   duration: 3000,
+          //   horizontalPosition: 'right',
+          //   verticalPosition: 'bottom',
+          // });
           this.ngOnInit();
         },
         (error) => {
-          this.snackBar.open('Error adding room', 'Close', {
-            duration: 3000,
-          });
+          // this.snackBar.open('Error adding room', 'Close', {
+          //   duration: 3000,
+          // });
         }
       );
     }

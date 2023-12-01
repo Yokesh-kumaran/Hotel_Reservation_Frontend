@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './service/auth.service';
 import { AnimationOptions } from 'ngx-lottie';
 import { LoaderService } from './service/loader.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -16,15 +17,19 @@ export class AppComponent implements OnInit {
     },
   };
 
+  isHomePage: boolean = false;
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
 
   constructor(
     private authService: AuthService,
-    public loaderService: LoaderService
+    public loaderService: LoaderService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.isHomePage = this.router.url === '/';
+
     this.authService.isAdmin$.subscribe((isAdmin) => {
       this.isAdmin = isAdmin;
     });

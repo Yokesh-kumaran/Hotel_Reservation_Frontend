@@ -98,7 +98,7 @@ export class BookingComponent implements OnInit {
           setTimeout(() => {
             this.storageService.removeRoomPrice();
             this.router.navigate(['/']);
-          }, 3000);
+          }, 2000);
         },
         (error) => {
           // console.error(error);
@@ -113,7 +113,7 @@ export class BookingComponent implements OnInit {
   //FOR LOTTIE ANIMATIONs
   playLottieAnimation() {
     this.option1 = {
-      path: '/assets/ordered.json',
+      path: '/assets/booked.json',
     };
   }
 }

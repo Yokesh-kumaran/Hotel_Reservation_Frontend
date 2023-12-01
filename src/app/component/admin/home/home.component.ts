@@ -147,16 +147,16 @@ export class AdminHomeComponent implements OnInit {
   deleteOrder(id: any) {
     this.orderService.deleteOrder(id).subscribe(
       (response) => {
-        this.snackBar.open('Order deleted successfully', 'Close', {
-          duration: 3000,
-        });
+        // this.snackBar.open('Order deleted successfully', 'Close', {
+        //   duration: 3000,
+        // });
         this.orders = this.orders.filter((order) => order.id !== id);
       },
       (error) => {
-        this.snackBar.open('Error deleting order', 'Close', {
-          duration: 3000,
-          horizontalPosition: 'right',
-        });
+        // this.snackBar.open('Error deleting order', 'Close', {
+        //   duration: 3000,
+        //   horizontalPosition: 'right',
+        // });
       }
     );
   }

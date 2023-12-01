@@ -55,10 +55,10 @@
     #ffffff 100%
   );
   border: 1px solid black;
-  margin-left: -10px; 
+  margin-left: -10px;
 }
 
-.card-body{
+.card-body {
   margin-top: -85px;
   margin-left: 10px;
 }
@@ -71,6 +71,6 @@
   color: #038a09;
 }
 
-.card{
+.card {
   height: 150px !important;
 }

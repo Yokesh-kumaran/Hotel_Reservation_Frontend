@@ -176,9 +176,9 @@ export class AdminRoomComponent implements OnInit {
   deleteRoomById(id: number) {
     this.roomService.deleteRoom(id).subscribe(
       (response) => {
-        this.snackBar.open('Room deleted successfully', 'Close', {
-          duration: 3000,
-        });
+        // this.snackBar.open('Room deleted successfully', 'Close', {
+        //   duration: 3000,
+        // });
         this.rooms = this.rooms.filter((room) => room.id !== id);
       },
       (error) => {

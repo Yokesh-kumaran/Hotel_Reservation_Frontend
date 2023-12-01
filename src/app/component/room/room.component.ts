@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -8,8 +8,10 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { Room } from 'src/app/model/room';
 import { Searchrange } from 'src/app/model/searchrange';
+import { AuthService } from 'src/app/service/auth.service';
 import { RoomService } from 'src/app/service/room.service';
 import { StorageService } from 'src/app/service/storage.service';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-room',
@@ -36,6 +38,8 @@ export class RoomComponent implements OnInit {
     cctvCameras: false,
   };
 
+  // @ViewChild(NavbarComponent)
+  // navbar!: NavbarComponent;
   error: string = '';
   rooms: Room[] = [];
   isLoggedIn = false;
@@ -45,7 +49,8 @@ export class RoomComponent implements OnInit {
     private route: ActivatedRoute,
     private roomService: RoomService,
     private storageService: StorageService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService:AuthService
   ) {}
   // this.form = this.fb.group({
   //   start_date: ['', Validators.required],
@@ -133,4 +138,8 @@ export class RoomComponent implements OnInit {
   shouldShowMore() {
     return true;
   }
+
+  // triggerNavbarLogout(): void {
+  //   this.navbar.logoutHandler();
+  // }
 }
