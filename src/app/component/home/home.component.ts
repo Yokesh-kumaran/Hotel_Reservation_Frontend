@@ -25,9 +25,9 @@ export class HomeComponent implements OnInit {
     private categoryService: CategoryService,
     private router: Router,
     private storageService: StorageService,
-    private authService:AuthService
+    private authService: AuthService,
   ) {
-    categoryService.getAllCategories;
+    categoryService.getAllCategories();
   }
   ngOnInit(): void {
     this.categoryService.getAllCategories().subscribe({
@@ -53,6 +53,11 @@ export class HomeComponent implements OnInit {
 
   navigateToRoomPage(categoryId: number) {
     this.router.navigate(['/room', categoryId]);
+  }
+
+  //NAVIGATING TO SEE ALL ROOMS PAGE
+  navigateToSeeAllRooms() {
+    this.router.navigate(['/room']);
   }
 
   //FOR LOTTIE ANIMATIONs
@@ -96,8 +101,8 @@ export class HomeComponent implements OnInit {
   }
 
   //LOGOUT HANDLER
-  logoutHandler(){
+  logoutHandler() {
     this.authService.logout();
-    this.router.navigate(["/"]);
+    this.router.navigate(['/']);
   }
 }

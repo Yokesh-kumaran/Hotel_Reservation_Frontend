@@ -1,114 +1,18 @@
-<nav
-  class="navbar navbar-expand-lg"
-  style="height: 80px; width: 100%; z-index: 2; background-color: black"
->
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">
-      <img
-        src="assets/images/logo.png"
-        alt="image"
-        height="60px"
-        width="100px"
-      />
-    </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
-        <li class="nav-item me-5">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            style="color: white; background: none"
-            routerLink="/"
-            onmouseover="this.style.color='red'"
-            onmouseout="this.style.color='white'"
-            >HOME</a
-          >
-        </li>
-        <li class="nav-item me-5">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            style="color: white; background: none"
-            href="#"
-            onmouseover="this.style.color='red'"
-            onmouseout="this.style.color='white'"
-            >ABOUT</a
-          >
-        </li>
-        <li class="nav-item me-5">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            style="color: white; background: none"
-            href="#"
-            onmouseover="this.style.color='red'"
-            onmouseout="this.style.color='white'"
-            >GALLERY</a
-          >
-        </li>
-        <li class="nav-item me-5">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            style="color: white; background: none"
-            href="#"
-            onmouseover="this.style.color='red'"
-            onmouseout="this.style.color='white'"
-            >CONTACT</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            style="color: red; background: none"
-            routerLink="/order"
-            >BOOKINGS</a
-          >
-        </li>
-      </ul>
-      <div *ngIf="isLoggedIn">
-        <a routerLink="/" style="color: white"
-          ><img
-            src="assets/images/logout.png"
-            alt=""
-            style="height: 40px; width: 40px"
-        /></a>
-      </div>
-      <div *ngIf="!isLoggedIn">
-        <a routerLink="/login" style="color: white"
-          ><img
-            src="assets/images/login.png"
-            alt=""
-            style="height: 40px; width: 40px"
-        /></a>
-      </div>
-    </div>
-  </div>
-</nav>
+<app-navbar />
 
 <div class="table1" *ngIf="isOrdered">
-  <h1 style="color: red; margin-left: 10px;">Your Orders</h1>
+  <h1 style="color: red; margin-left: 10px">Your Bookings</h1>
   <table class="table">
     <thead class="thead">
       <tr>
         <th scope="col">Booking Id</th>
-        <th scope="col">Room Id</th>
+        <th scope="col">Room No</th>
         <th scope="col">Check in</th>
         <th scope="col">Check out</th>
         <th scope="col">Status</th>
         <th scope="col">Guest</th>
+        <th scope="col">Feedback</th>
+        <th scope="col">Bill</th>
       </tr>
     </thead>
     <tbody class="tbody">
@@ -122,16 +26,96 @@
           Adults - {{ order.adults }} <br />
           Children - {{ order.children }}
         </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            data-bs-whatever="@mdo"
+            (click)="showPopUp(order.id)"
+            [disabled]="orderErrors[order.id] === 'yes'"
+          >
+            Feedback
+          </button>
+        </td>
+        <td>
+          <button
+            (click)="printBill(order)"
+            style="background-color: transparent; border: none; margin-left: -10px;"
+          >
+            <img
+              src="assets/images/pdf.png"
+              height="35px"
+              width="35px"
+              alt=""
+            />
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          (ngSubmit)="addFeedback(addFeedbackForm)"
+          #addFeedbackForm="ngForm"
+        >
+          <input
+            type="hidden"
+            id="id"
+            name="id"
+            ngModel
+            [(ngModel)]="selectedOrderId"
+          />
+
+          <div class="mb-3">
+            <label for="feedback" class="form-label">Feedback:</label>
+            <textarea
+              class="form-control"
+              id="feedback"
+              name="feedback"
+              ngModel
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-success text-dark w-100"
+            style="font-size: large"
+            data-bs-dismiss="modal"
+          >
+            Leave feedback
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="!isOrdered">
   <div class="lottie">
     <ng-lottie [options]="option1"></ng-lottie>
     <h1 style="color: red; font-weight: bold; margin-left: 100px">
-      No Orders!!!
+      No Bookings!!!
     </h1>
   </div>
 </div>

@@ -1,64 +1,90 @@
 <app-navbar></app-navbar>
 
-<!-- <div class="navbar2">
-  <div *ngIf="isLoggedIn">
-    <a style="color: white"
-      ><img
-        src="assets/images/logout.png"
-        click="logoutHandler()"
-        alt=""
-        style="height: 40px; width: 40px; cursor: pointer"
-    /></a>
-  </div>
-  <div *ngIf="!isLoggedIn">
-    <a routerLink="/login" style="color: white"
-      ><img
-        src="assets/images/login.png"
-        alt=""
-        style="height: 40px; width: 40px"
-    /></a>
-  </div>
-</div> -->
-
 <!-- FILTER -->
-<!-- <form (ngSubmit)="onFormSubmit()" #Form="ngForm" [formGroup]="form">
+<form (ngSubmit)="onFormSubmit(filterForm)" #filterForm="ngForm">
   <div class="filter container-fluid">
+    <div class="row justify-content-center">
+      <div *ngIf="validDate === 2">
+        <p class="text-danger text-center">
+          Please enter a valid date range with Check Out Date after Check In
+          Date.
+        </p>
+      </div>
+      <div *ngIf="branchError">
+        <p class="text-danger text-center">Please enter a branch!!!</p>
+      </div>
+    </div>
     <div class="dateFilter row px-2">
-      <div class="checkIn col-md-4">
+      <div class="checkIn col-md-3">
         <h3 class="check-in">Check In Date</h3>
         <input
           type="date"
           class="form-control date-input"
           placeholder="Check-in Date"
           style="box-shadow: none"
-          ngModel
-          name="check-in-date"
+          [(ngModel)]="checkInDate"
+          name="checkInDate"
           required
+          [min]="minDate"
         />
       </div>
-      <div class="checkOut col-md-4">
+      <div class="checkOut col-md-3">
         <h3 class="check-in">Check Out Date</h3>
         <input
           type="date"
           class="form-control date-input"
           placeholder="Check-out Date"
           style="box-shadow: none"
-          ngModel
-          name="check-out-date"
+          [(ngModel)]="checkOutDate"
+          name="checkOutDate"
           required
+          [min]="minDate"
         />
       </div>
-      <div class="col-md-4">
-        <button type="submit" class="btn btn-primary search-button">Search</button>
+      <div class="branch col-md-3" style="margin-top: -43px">
+        <h3 class="branch" style="color: white">Branch</h3>
+        <div class="dropdown">
+          <a
+            class="btn btn-secondary dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            style="color: rgb(137, 137, 137); background-color: white"
+          >
+            {{ selectedBranch || "Select branch" }}
+          </a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" (click)="selectBranch('Chennai')"
+                >Chennai</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="selectBranch('Kerala')"
+                >Kerala</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 search-button-container" style="margin-left: -80px">
+        <button type="submit" class="btn btn-primary search-button">
+          Search
+        </button>
       </div>
     </div>
   </div>
-</form> -->
+</form>
 
 <!-- ROOMS -->
-<div style="background-color: rgb(180, 178, 178) (128, 128, 128, 0.852)">
+<div
+  *ngIf="filtered"
+  style="background-color: rgb(180, 178, 178) (128, 128, 128, 0.852)"
+>
   <div class="container mt-5">
-    <div class="row custom-row mb-2" *ngFor="let room of rooms">
+    <div class="row custom-row mb-2" *ngFor="let room of categoryRoom">
       <!-- Left column for image -->
       <div class="col-6">
         <img
@@ -79,7 +105,39 @@
       <!-- Right column for room details -->
       <div class="col-6">
         <h2 style="font-weight: bold">{{ room.description }}</h2>
-
+        <h5
+          *ngIf="categoryId === 4"
+          style="
+            color: rgb(114, 25, 197);
+            font-weight: bold;
+            font-family: sans-serif;
+            font-size: small;
+          "
+        >
+          {{ room.categoryName.toUpperCase() }}
+        </h5>
+        <h5
+          *ngIf="categoryId === 5"
+          style="
+            color: gold;
+            font-weight: bold;
+            font-family: sans-serif;
+            font-size: small;
+          "
+        >
+          {{ room.categoryName.toUpperCase() }}
+        </h5>
+        <h5
+          *ngIf="categoryId === 12"
+          style="
+            color: silver;
+            font-weight: bold;
+            font-family: sans-serif;
+            font-size: small;
+          "
+        >
+          {{ room.categoryName.toUpperCase() }}
+        </h5>
         <!-- 4-star rating -->
         <div>
           <p class="rating">
@@ -171,5 +229,317 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ALL ROOMS -->
+<div
+  *ngIf="categoryId === 0"
+  style="background-color: rgb(180, 178, 178) (128, 128, 128, 0.852)"
+>
+  <div class="container mt-5">
+    <div *ngIf="isChennaiRooms">
+      <div class="row custom-row mb-2" *ngFor="let room of chennaiRooms">
+        <!-- Left column for image -->
+        <div class="col-6">
+          <img
+            src="{{
+              'http://localhost:8080/api/admin/room/downloadFile/' + room.id
+            }}"
+            alt="Room Image"
+            class="img-fluid"
+            style="
+              width: 100%;
+              height: 300px;
+              border-radius: 3px;
+              box-shadow: 2px 2px 2px 2px rgb(44, 43, 43);
+            "
+          />
+        </div>
+
+        <!-- Right column for room details -->
+        <div class="col-6">
+          <h2 style="font-weight: bold">{{ room.description }}</h2>
+          <h5
+            *ngIf="room.categoryId === 4"
+            style="
+              color: rgb(114, 25, 197);
+              font-weight: bold;
+              font-family: sans-serif;
+              font-size: small;
+            "
+          >
+            {{ room.categoryName.toUpperCase() }}
+          </h5>
+          <h5
+            *ngIf="room.categoryId === 5"
+            style="
+              color: gold;
+              font-weight: bold;
+              font-family: sans-serif;
+              font-size: small;
+            "
+          >
+            {{ room.categoryName.toUpperCase() }}
+          </h5>
+          <h5
+            *ngIf="room.categoryId === 12"
+            style="
+              color: silver;
+              font-weight: bold;
+              font-family: sans-serif;
+              font-size: small;
+            "
+          >
+            {{ room.categoryName.toUpperCase() }}
+          </h5>
+          <!-- 4-star rating -->
+          <div>
+            <p class="rating">
+              <span
+                class="p-1"
+                style="
+                  vertical-align: middle;
+                  font-size: small;
+                  font-weight: bold;
+                  color: white;
+                "
+                >4.5</span
+              >
+              <span
+                style="font-size: medium; vertical-align: middle; color: white"
+                >★</span
+              >
+            </p>
+            <span class="ratings">(528 ratings) - Excellent</span>
+            <p style="color: red; font-size: small; font-weight: bold">
+              All staffs vaccinated with 2 doses
+            </p>
+          </div>
+
+          <!-- Amenities -->
+          <div class="amenities">
+            <ul *ngIf="room.ac">
+              <img src="assets/images/png/004-air-conditioner.png" alt="" />
+              AC
+            </ul>
+            <ul *ngIf="room.tv">
+              <img src="assets/images/png/007-monitor.png" alt="" />
+              TV
+            </ul>
+            <ul *ngIf="room.wifi">
+              <img src="assets/images/png/003-wifi.png" alt="" />
+              Wifi
+            </ul>
+            <ul>
+              <img src="assets/images/png/005-bed.png" alt="" />
+              Bed
+              {{
+                room.bedCount
+              }}
+            </ul>
+            <ul *ngIf="room.powerBackup">
+              <img src="assets/images/png/006-backup.png" alt="" />
+              Power Backup
+            </ul>
+            <ul *ngIf="room.breakfast">
+              <img src="assets/images/png/008-coffee.png" alt="" />
+              Breakfast
+            </ul>
+            <ul *ngIf="room.lunch">
+              <img src="assets/images/png/002-food.png" alt="" />
+              Lunch
+            </ul>
+            <ul *ngIf="room.dinner">
+              <img src="assets/images/png/009-serving-dish.png" alt="" />
+              Dinner
+            </ul>
+            <ul *ngIf="room.parkingFacility">
+              <img src="assets/images/png/001-parking.png" alt="" />
+              Parking Facility
+            </ul>
+            <ul *ngIf="room.cctvCameras">
+              <img src="assets/images/png/010-cctv.png" alt="" />
+              CCTV Cameras
+            </ul>
+          </div>
+
+          <!-- Room Price -->
+          <div class="room-price">
+            <p>
+              <span
+                class="discount"
+                style="font-size: x-large; color: red; font-weight: bold"
+                >₹{{ room.price }}</span
+              >
+              <span class="original-price">{{ room.price * 2 }}</span>
+              <span class="offer">50% off</span>
+            </p>
+            <button
+              class="book-now-btn"
+              (click)="navigateToBookingPage(room.id, room.price)"
+            >
+              Book Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isKeralaRooms">
+      <div class="row custom-row mb-2" *ngFor="let room of keralaRooms">
+        <!-- Left column for image -->
+        <div class="col-6">
+          <img
+            src="{{
+              'http://localhost:8080/api/admin/room/downloadFile/' + room.id
+            }}"
+            alt="Room Image"
+            class="img-fluid"
+            style="
+              width: 100%;
+              height: 300px;
+              border-radius: 3px;
+              box-shadow: 2px 2px 2px 2px rgb(44, 43, 43);
+            "
+          />
+        </div>
+
+        <!-- Right column for room details -->
+        <div class="col-6">
+          <h2 style="font-weight: bold">{{ room.description }}</h2>
+          <h5
+            *ngIf="room.categoryId === 4"
+            style="
+              color: rgb(114, 25, 197);
+              font-weight: bold;
+              font-family: sans-serif;
+              font-size: small;
+            "
+          >
+            {{ room.categoryName.toUpperCase() }}
+          </h5>
+          <h5
+            *ngIf="room.categoryId === 5"
+            style="
+              color: gold;
+              font-weight: bold;
+              font-family: sans-serif;
+              font-size: small;
+            "
+          >
+            {{ room.categoryName.toUpperCase() }}
+          </h5>
+          <h5
+            *ngIf="room.categoryId === 12"
+            style="
+              color: silver;
+              font-weight: bold;
+              font-family: sans-serif;
+              font-size: small;
+            "
+          >
+            {{ room.categoryName.toUpperCase() }}
+          </h5>
+          <!-- 4-star rating -->
+          <div>
+            <p class="rating">
+              <span
+                class="p-1"
+                style="
+                  vertical-align: middle;
+                  font-size: small;
+                  font-weight: bold;
+                  color: white;
+                "
+                >4.5</span
+              >
+              <span
+                style="font-size: medium; vertical-align: middle; color: white"
+                >★</span
+              >
+            </p>
+            <span class="ratings">(528 ratings) - Excellent</span>
+            <p style="color: red; font-size: small; font-weight: bold">
+              All staffs vaccinated with 2 doses
+            </p>
+          </div>
+
+          <!-- Amenities -->
+          <div class="amenities">
+            <ul *ngIf="room.ac">
+              <img src="assets/images/png/004-air-conditioner.png" alt="" />
+              AC
+            </ul>
+            <ul *ngIf="room.tv">
+              <img src="assets/images/png/007-monitor.png" alt="" />
+              TV
+            </ul>
+            <ul *ngIf="room.wifi">
+              <img src="assets/images/png/003-wifi.png" alt="" />
+              Wifi
+            </ul>
+            <ul>
+              <img src="assets/images/png/005-bed.png" alt="" />
+              Bed
+              {{
+                room.bedCount
+              }}
+            </ul>
+            <ul *ngIf="room.powerBackup">
+              <img src="assets/images/png/006-backup.png" alt="" />
+              Power Backup
+            </ul>
+            <ul *ngIf="room.breakfast">
+              <img src="assets/images/png/008-coffee.png" alt="" />
+              Breakfast
+            </ul>
+            <ul *ngIf="room.lunch">
+              <img src="assets/images/png/002-food.png" alt="" />
+              Lunch
+            </ul>
+            <ul *ngIf="room.dinner">
+              <img src="assets/images/png/009-serving-dish.png" alt="" />
+              Dinner
+            </ul>
+            <ul *ngIf="room.parkingFacility">
+              <img src="assets/images/png/001-parking.png" alt="" />
+              Parking Facility
+            </ul>
+            <ul *ngIf="room.cctvCameras">
+              <img src="assets/images/png/010-cctv.png" alt="" />
+              CCTV Cameras
+            </ul>
+          </div>
+
+          <!-- Room Price -->
+          <div class="room-price">
+            <p>
+              <span
+                class="discount"
+                style="font-size: x-large; color: red; font-weight: bold"
+                >₹{{ room.price }}</span
+              >
+              <span class="original-price">{{ room.price * 2 }}</span>
+              <span class="offer">50% off</span>
+            </p>
+            <button
+              class="book-now-btn"
+              (click)="navigateToBookingPage(room.id, room.price)"
+            >
+              Book Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!filtered">
+  <h1 style="color: red; font-weight: bold; margin-left: 420px">
+    Search for Availability!!!
+  </h1>
+  <div class="lottie">
+    <ng-lottie [options]="option1"></ng-lottie>
   </div>
 </div>

@@ -1,0 +1,100 @@
+<div class="navigation-container">
+  <p class="navigateIcon">All Feedbacks&nbsp;</p>
+  <p class="greaterThan">> &nbsp;</p>
+  <img src="assets/images/feedback.png" height="20px" width="20px" alt="" />
+</div>
+
+<div class="mt-4" *ngFor="let feedback of feedback">
+  <div class="d-flex">
+    <img
+      src="assets/images/userfeedback.png"
+      height="70px"
+      width="70px"
+      alt=""
+    />
+    <h4 class="ms-3 feedback">{{ feedback.userFeedback }}</h4>
+    <br />
+    <h4 style="margin-top: 30px; color: blue;">
+      {{ feedback.adminReply }}
+    </h4>
+  </div>
+
+  <div class="d-flex">
+    <h5 class="date me-3">{{ feedback.feedbackDate }}</h5>
+    <button
+      [disabled]="feedback.adminReply !== null && feedback.adminReply !== ''"
+      (click)="reply(feedback)"
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      data-bs-whatever="@mdo"
+      style="
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: smaller;
+        color: rgb(189, 124, 3);
+        margin-top: -10px;
+      "
+    >
+      Reply
+      <img src="assets/images/reply.png" height="16px" width="16px" alt="" />
+    </button>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+        <form
+          (ngSubmit)="postReply(replyFeedbackForm)"
+          #replyFeedbackForm="ngForm"
+        >
+          <input
+            type="hidden"
+            id="id"
+            name="id"
+            ngModel
+            [(ngModel)]="selectedFeedback.id"
+          />
+
+          <div class="mb-3">
+            <label for="feedback" class="form-label">Reply:</label>
+            <textarea
+              class="form-control"
+              id="adminReply"
+              name="adminReply"
+              ngModel
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-success text-dark w-100"
+            style="font-size: large"
+            data-bs-dismiss="modal"
+          >
+            Leave Reply
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -24,6 +24,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutComponent } from './component/about/about.component';
 import { OrderComponent } from './component/order/order.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
+import { AdminfeedbackComponent } from './component/admin/adminfeedback/adminfeedback.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatButtonModule } from '@angular/material/button';
+import { FeedbackComponent } from './component/feedback/feedback.component';
 
 export function playerFactory() {
   return player;
@@ -44,6 +48,8 @@ export function playerFactory() {
     AboutComponent,
     OrderComponent,
     NavbarComponent,
+    AdminfeedbackComponent,
+    FeedbackComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +60,8 @@ export function playerFactory() {
     LottieModule.forRoot({ player: playerFactory }),
     MatSnackBarModule,
     BrowserAnimationsModule,
+    MatSliderModule,
+    MatButtonModule,
   ],
   providers: [
     {

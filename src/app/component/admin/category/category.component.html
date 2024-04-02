@@ -7,14 +7,14 @@
 <table class="table">
   <thead>
     <tr>
-      <th class="col">Category Id</th>
+      <!-- <th class="col">Category Id</th> -->
       <th class="col">Name</th>
       <th class="col">Action</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let category of categories">
-      <td class="col">{{ category.id }}</td>
+      <!-- <td class="col">{{ category.id }}</td> -->
       <td class="col">{{ category.name }}</td>
       <td class="col">
         <button
@@ -84,6 +84,13 @@
               Enter Category name
             </div>
           </div>
+
+          <input
+            type="hidden"
+            id="amenityId"
+            name="amenityId"
+            [(ngModel)]="selectedCategory.amenityId"
+          />
 
           <button
             type="submit"

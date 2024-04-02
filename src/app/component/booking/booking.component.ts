@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AnimationOptions } from 'ngx-lottie';
+import { AppResponse } from 'src/app/model/appResponse';
 import { Order } from 'src/app/model/order';
+import { MailService } from 'src/app/service/mail.service';
 import { OrderService } from 'src/app/service/order.service';
 import { StorageService } from 'src/app/service/storage.service';
 
@@ -17,13 +18,16 @@ export class BookingComponent implements OnInit {
   isLoggedIn = false;
   defaultCheckOutTime: string = '22:00:00';
   defaultCheckInTime: string = '08:00:00';
+  checkInDate: string = '';
+  checkOutDate: string = '';
+
   minDate: string;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private storageService: StorageService,
     private orderService: OrderService,
-    private snackBar: MatSnackBar
+    private mailService: MailService
   ) {
     const today = new Date();
     this.minDate = today.toISOString().split('T')[0];
@@ -44,6 +48,8 @@ export class BookingComponent implements OnInit {
     }
 
     this.roomPrice = this.storageService.getRoomPrice();
+    this.checkInDate = this.storageService.getCheckInDate()!;
+    this.checkOutDate = this.storageService.getCheckOutDate()!;
   }
 
   booking(bookingForm: NgForm): void {
@@ -58,14 +64,15 @@ export class BookingComponent implements OnInit {
       const zipCode = bookingForm.value.zipCode;
       const phone = bookingForm.value.phone;
       const email = bookingForm.value.email;
-      const checkInDate = bookingForm.value.checkInDate;
-      const checkOutDate = bookingForm.value.checkOutDate;
+      const checkInDate = this.checkInDate;
+      const checkOutDate = this.checkOutDate;
       const checkInTime = this.defaultCheckInTime;
       const checkOutTime = this.defaultCheckOutTime;
       const adults = bookingForm.value.adults;
       const children = bookingForm.value.children;
 
       const order: Order = {
+        id: 0,
         userId: this.userId,
         roomId: this.roomId,
         price: this.roomPrice,
@@ -89,23 +96,38 @@ export class BookingComponent implements OnInit {
 
       this.orderService.placeOrders(order).subscribe(
         (response) => {
-          // this.snackBar.open('Room booked successfully', 'Close', {
-          //   duration: 3000,
-          //   horizontalPosition: 'right',
-          //   verticalPosition: 'bottom',
-          // });
+          //Mail trigger
+          const mail: any = {
+            email: order.email,
+            roomNo: order.roomId,
+            price: order.price,
+            bookingName: order.firstName + ' ' + order.lastName,
+            checkInDate: order.checkInDate,
+            checkOutDate: order.checkOutDate,
+            checkInTime: order.checkInTime,
+            checkOutTime: order.checkOutTime,
+            adults: order.adults,
+            children: order.children,
+          };
+
+          this.mailService.sendEmail(mail).subscribe({
+            next: (response: AppResponse) => {},
+            complete: () => {},
+            error: (error: Error) => {
+              console.log('Message:', error.message);
+              console.log('Name:', error.name);
+            },
+          });
+
           this.playLottieAnimation();
           setTimeout(() => {
             this.storageService.removeRoomPrice();
+            this.storageService.removeCheckInDate();
+            this.storageService.removeCheckOutDate();
             this.router.navigate(['/']);
           }, 2000);
         },
-        (error) => {
-          // console.error(error);
-          // this.snackBar.open('Error placing order', 'Close', {
-          //   duration: 3000,
-          // });
-        }
+        (error) => {}
       );
     }
   }

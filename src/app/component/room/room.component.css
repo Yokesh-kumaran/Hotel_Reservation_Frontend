@@ -17,7 +17,7 @@
 }
 
 .filter {
-  background-image: url(https://png.pngtree.com/background/20230516/original/pngtree-dark-hallway-containing-some-wood-paneling-picture-image_2581689.jpg);
+  background-image: url(https://c4.wallpaperflare.com/wallpaper/315/519/692/dark-hotel-luxury-night-wallpaper-preview.jpg);
   background-position: center;
   width: 100%;
   height: 200px;
@@ -68,13 +68,6 @@
   transition: 0.8s;
 }
 
-.amenities img:hover {
-  width: 26px;
-  height: 26px;
-  margin-right: 5px;
-  transition: 0.8s;
-}
-
 .original-price {
   margin-left: 10px;
   color: rgb(137, 137, 137);
@@ -90,24 +83,37 @@
   padding-bottom: 5px;
 }
 
-.dateFilter{
- vertical-align: middle;
- padding-top: 80px;
- margin-left: 220px;
+.dateFilter {
+  vertical-align: middle;
+  padding-top: 60px;
+  margin-left: 220px;
 }
 
-.check-in{
+.check-in {
   color: white;
 }
 
-.checkIn{
+.checkIn {
   margin-top: -43px;
 }
 
-.checkOut{
+.checkOut {
   margin-top: -43px;
 }
 
-.navbar2{
+.navbar2 {
   margin-top: -20px;
+}
+
+.lottie {
+  height: 300px;
+  width: 300px;
+  margin-top: -30px;
+  margin-left: 500px;
+}
+
+.search-button-container {
+  position: relative;
+  width: fit-content; 
+  margin: 0 auto; 
 }

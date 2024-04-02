@@ -12,8 +12,10 @@ import { BookingComponent } from './component/booking/booking.component';
 import { AboutComponent } from './component/about/about.component';
 import { authGuard } from './guard/auth.guard';
 import { OrderComponent } from './component/order/order.component';
+import { AdminfeedbackComponent } from './component/admin/adminfeedback/adminfeedback.component';
+import { FeedbackComponent } from './component/feedback/feedback.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: 'room/:id', component: RoomComponent },
   {
     path: 'booking/:id',
@@ -24,6 +26,7 @@ const routes: Routes = [
   { path: 'room', component: RoomComponent },
   { path: '', component: HomeComponent },
   { path: 'order', component: OrderComponent },
+  { path: 'feedback', component: FeedbackComponent },
   { path: 'admin', component: AdminHomeComponent, canActivate: [authGuard] },
   {
     path: 'adminRoom',
@@ -38,6 +41,11 @@ const routes: Routes = [
   {
     path: 'adminUser',
     component: AdminUserComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'adminFeedback',
+    component: AdminfeedbackComponent,
     canActivate: [authGuard],
   },
   { path: 'booking', component: BookingComponent, canActivate: [authGuard] },

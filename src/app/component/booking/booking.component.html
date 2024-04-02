@@ -1,104 +1,4 @@
-<nav
-  class="navbar navbar-expand-lg"
-  style="height: 80px; width: 100%; z-index: 2; background-color: black"
->
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">
-      <img
-        src="assets/images/logo.png"
-        alt="image"
-        height="60px"
-        width="100px"
-      />
-    </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
-        <li class="nav-item me-5">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            style="color: white; background: none"
-            routerLink="/"
-            onmouseover="this.style.color='red'"
-            onmouseout="this.style.color='white'"
-            >HOME</a
-          >
-        </li>
-        <li class="nav-item me-5">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            style="color: white; background: none"
-            href="#"
-            onmouseover="this.style.color='red'"
-            onmouseout="this.style.color='white'"
-            >ABOUT</a
-          >
-        </li>
-        <li class="nav-item me-5">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            style="color: white; background: none"
-            href="#"
-            onmouseover="this.style.color='red'"
-            onmouseout="this.style.color='white'"
-            >GALLERY</a
-          >
-        </li>
-        <li class="nav-item me-5">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            style="color: white; background: none"
-            href="#"
-            onmouseover="this.style.color='red'"
-            onmouseout="this.style.color='white'"
-            >CONTACT</a
-          >
-        </li>
-        <li class="nav-item me-3">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            style="color: white; background: none"
-            href="/booking"
-            onmouseover="this.style.color='red'"
-            onmouseout="this.style.color='white'"
-            >BOOKINGS</a
-          >
-        </li>
-      </ul>
-      <div *ngIf="isLoggedIn">
-        <a routerLink="/" style="color: white"
-          ><img
-            src="assets/images/logout.png"
-            alt=""
-            style="height: 40px; width: 40px"
-        /></a>
-      </div>
-      <div *ngIf="!isLoggedIn">
-        <a routerLink="/" style="color: white"
-          ><img
-            src="assets/images/login.png"
-            alt=""
-            style="height: 40px; width: 40px"
-        /></a>
-      </div>
-    </div>
-  </div>
-</nav>
+<app-navbar />
 
 <div class="container mt-5 form-container">
   <form (ngSubmit)="booking(bookingForm)" #bookingForm="ngForm">
@@ -174,7 +74,7 @@
           <option value="" disabled selected>Select Gender</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
-          <option value="others">Others</option>
+          <option value="others">Preferred not to say</option>
         </select>
         <div
           *ngIf="modelGender.invalid && modelGender.dirty"
@@ -376,24 +276,11 @@
             type="date"
             class="form-control w-80"
             style="box-shadow: none"
-            [min]="minDate"
             id="checkInDate"
             name="checkInDate"
-            ngModel
-            required
-            #modelCheckInDate="ngModel"
-            [ngClass]="
-              modelCheckInDate.invalid && modelCheckInDate.dirty
-                ? 'is-invalid'
-                : ''
-            "
+            [(ngModel)]="checkInDate"
+            disabled
           />
-          <div
-            *ngIf="modelCheckInDate.invalid && modelCheckInDate.dirty"
-            class="invalid-feedback"
-          >
-            Check In field is required
-          </div>
         </div>
       </div>
       <div class="col">
@@ -420,21 +307,9 @@
             [min]="minDate"
             id="checkOutDate"
             name="checkOutDate"
-            ngModel
-            required
-            #modelCheckOutDate="ngModel"
-            [ngClass]="
-              modelCheckOutDate.invalid && modelCheckOutDate.dirty
-                ? 'is-invalid'
-                : ''
-            "
+            [(ngModel)]="checkOutDate"
+            disabled
           />
-          <div
-            *ngIf="modelCheckOutDate.invalid && modelCheckOutDate.dirty"
-            class="invalid-feedback"
-          >
-            Check Out field is required
-          </div>
         </div>
       </div>
       <div class="col">
@@ -498,6 +373,7 @@
           "
         >
           <option value="" disabled selected>Select Children</option>
+          <option value="0">0</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>

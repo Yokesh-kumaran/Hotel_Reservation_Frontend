@@ -57,15 +57,41 @@ export class StorageService {
     localStorage.removeItem('authData');
   }
 
-  public setFromToDate(formValue: string) {
-    localStorage.setItem('fromToRange', formValue);
+  // public setFromToDate(formValue: string) {
+  //   localStorage.setItem('fromToRange', formValue);
+  // }
+
+  // public getFromToDate(): string | null {
+  //   return localStorage.getItem('fromToRange');
+  // }
+
+  // public removeFromToDate(): void {
+  //   localStorage.removeItem('fromToRange');
+  // }
+
+  // CHECK IN CHECK OUT DATE
+  public setCheckInDate(checkInDate: string) {
+    localStorage.setItem('checkInDate', checkInDate);
   }
 
-  public getFromToDate(): string | null {
-    return localStorage.getItem('fromToRange');
+  public getCheckInDate(): string | null {
+    return localStorage.getItem('checkInDate');
+  }
+
+  public removeCheckInDate(): void {
+    localStorage.removeItem('checkInDate');
+  }
+
+  setCheckOutDate(checkOutDate: any): void {
+    localStorage.setItem('checkOutDate', checkOutDate);
+  }
+
+  getCheckOutDate(): string | null {
+    return localStorage.getItem('checkOutDate');
+  }
+
+  removeCheckOutDate(): void {
+    localStorage.removeItem('checkOutDate');
   }
   
-  public removeFromToDate(): void {
-    localStorage.removeItem('fromToRange');
-  }
 }

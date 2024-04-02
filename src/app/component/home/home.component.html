@@ -42,7 +42,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: 200px">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left: 350px">
           <li class="nav-item me-5">
             <a
               class="nav-link active"
@@ -52,7 +52,7 @@
               >HOME</a
             >
           </li>
-          <li class="nav-item me-5">
+          <!-- <li class="nav-item me-5">
             <a
               class="nav-link active"
               aria-current="page"
@@ -78,14 +78,23 @@
               href="#"
               >CONTACT</a
             >
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <li class="nav-item me-5">
             <a
               class="nav-link active"
               aria-current="page"
               style="color: white; background: none"
               routerLink="/order"
               >BOOKINGS</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              style="color: white; background: none"
+              routerLink="/feedback"
+              >FEEDBACKS</a
             >
           </li>
         </ul>
@@ -102,7 +111,7 @@
             ><img
               (click)="logoutHandler()"
               src="assets/images/logout.png"
-              style="height: 40px; width: 40px; cursor: pointer;"
+              style="height: 40px; width: 40px; cursor: pointer"
               alt=""
           /></a>
         </div>
@@ -432,10 +441,10 @@
   <button
     type="button"
     class="btn btn-primary"
-    id="button1"
     style="border-radius: 20px"
+    (click)="navigateToSeeAllRooms()"
   >
-    Read More
+    See All Rooms
   </button>
 </div>
 

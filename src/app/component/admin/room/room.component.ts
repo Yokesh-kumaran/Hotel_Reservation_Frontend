@@ -48,6 +48,7 @@ export class AdminRoomComponent implements OnInit {
   categories: Category[] = [];
   rooms: Room[] = [];
   selectedCategoryId: number = 0;
+  getBranch: any = [];
 
   constructor(
     private roomService: RoomService,
@@ -118,11 +119,6 @@ export class AdminRoomComponent implements OnInit {
       if (this.editId === 0) {
         this.roomService.createRoom(formData).subscribe(
           (response) => {
-            // this.snackBar.open('Room added successfully', 'Close', {
-            //   duration: 3000,
-            //   horizontalPosition: 'right',
-            //   verticalPosition: 'bottom',
-            // });
             this.ngOnInit();
           },
           (error) => {
@@ -176,9 +172,6 @@ export class AdminRoomComponent implements OnInit {
   deleteRoomById(id: number) {
     this.roomService.deleteRoom(id).subscribe(
       (response) => {
-        // this.snackBar.open('Room deleted successfully', 'Close', {
-        //   duration: 3000,
-        // });
         this.rooms = this.rooms.filter((room) => room.id !== id);
       },
       (error) => {

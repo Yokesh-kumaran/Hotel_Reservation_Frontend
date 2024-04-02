@@ -1,4 +1,5 @@
 export interface Room {
+  branch?: string;
   id: number;
   description: string;
   price: number;

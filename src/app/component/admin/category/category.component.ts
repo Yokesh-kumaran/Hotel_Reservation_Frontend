@@ -23,6 +23,7 @@ export class AdminCategoryComponent implements OnInit {
   selectedCategory: Category = {
     id: 0,
     name: '',
+    amenityId: 0,
   };
 
   ngOnInit(): void {
@@ -49,26 +50,19 @@ export class AdminCategoryComponent implements OnInit {
     if (editCategoryForm.valid) {
       const name = editCategoryForm.value.category;
       const id = editCategoryForm.value.id;
+      const amenityId = editCategoryForm.value.amenityId;
 
       const selectedCategory: Category = {
         id: id,
         name: name,
+        amenityId: amenityId,
       };
 
       this.categoryService.updateCategory(selectedCategory).subscribe(
         (response) => {
-          // this.snackBar.open('Category edited successfully', 'Close', {
-          //   duration: 3000,
-          //   horizontalPosition: 'right',
-          //   verticalPosition: 'bottom',
-          // });
           this.ngOnInit();
         },
-        (error) => {
-          // this.snackBar.open('Error adding room', 'Close', {
-          //   duration: 3000,
-          // });
-        }
+        (error) => {}
       );
     }
   }

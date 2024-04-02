@@ -22,17 +22,11 @@
   margin: 0;
 }
 
-.table {
-  margin-top: 5px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.feedback{
+  color: rgb(105, 105, 105);
 }
 
-.table tbody tr:hover {
-  transform: scale(1.01, 1.01);
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.table tbody tr:hover td {
-  background-color: #d3d3d3;
+.date{
+  font-size: smaller;
+  margin-left: 90px;
 }
