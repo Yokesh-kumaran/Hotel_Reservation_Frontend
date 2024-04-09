@@ -1,13 +1,14 @@
 import {
   ComponentFixture,
   TestBed,
+  async,
   fakeAsync,
   tick,
 } from '@angular/core/testing';
 import { AdminfeedbackComponent } from './adminfeedback.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FeedbackService } from 'src/app/service/feedback.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import {
   HttpClientTestingModule,
   HttpTestingController,
@@ -15,7 +16,7 @@ import {
 import { urlEndpoint } from 'src/app/utils/constant';
 import { Feedbackresponse } from 'src/app/model/feedbackresponse';
 import { AppResponse } from 'src/app/model/appResponse';
-import { By } from '@angular/platform-browser';
+import { of, throwError } from 'rxjs';
 
 describe('AdminfeedbackComponent', () => {
   let component: AdminfeedbackComponent;
@@ -202,4 +203,46 @@ describe('AdminfeedbackComponent', () => {
     fixture.detectChanges();
     expect(component.postReply).toHaveBeenCalled();
   });
+
+  it('Should store the feedback in selectedFeedback if reply() calls', () => {
+    const mockFeedbackResponse = {
+      id: 1,
+      adminReply: null,
+      userFeedback: 'dummy',
+      orderId: 1,
+      feedbackDate: 'dummy',
+    };
+    component.reply(mockFeedbackResponse);
+    fixture.detectChanges();
+    expect(component.selectedFeedback).not.toBeNull();
+  });
+
+  it('should call adminReplyFeedback method of FeedbackService and handle response and error', fakeAsync(() => {
+    const mockFormValue = { id: 1, adminReply: 'Admin reply' };
+    const ngFormMock = {
+      value: mockFormValue,
+    } as NgForm;
+    spyOn(component, 'ngOnInit');
+
+    const adminReplyFeedbackSpy = spyOn(
+      service,
+      'adminReplyFeedback'
+    ).and.returnValue(
+      of({
+        status: 200,
+        timestamp: '2022-01-01T12:00:00Z',
+        data: [{ id: 1, adminReply: 'Admin reply' }],
+        error: null,
+      })
+    );
+    component.postReply(ngFormMock);
+    tick();
+    fixture.detectChanges();
+    expect(adminReplyFeedbackSpy).toHaveBeenCalledWith({
+      id: 1,
+      adminReply: mockFormValue.adminReply,
+    });
+
+    expect(component.ngOnInit).toHaveBeenCalled();
+  }));
 });

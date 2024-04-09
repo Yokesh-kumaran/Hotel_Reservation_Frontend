@@ -58,12 +58,11 @@ export class AdminCategoryComponent implements OnInit {
         amenityId: amenityId,
       };
 
-      this.categoryService.updateCategory(selectedCategory).subscribe(
-        (response) => {
+      this.categoryService
+        .updateCategory(selectedCategory)
+        .subscribe((response) => {
           this.ngOnInit();
-        },
-        (error) => {}
-      );
+        });
     }
   }
 

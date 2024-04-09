@@ -44,11 +44,10 @@ export class AdminfeedbackComponent implements OnInit {
       adminReply: adminReply,
     };
 
-    this.feedbackService.adminReplyFeedback(adminFeedback).subscribe(
-      (response) => {
+    this.feedbackService
+      .adminReplyFeedback(adminFeedback)
+      .subscribe((response) => {
         this.ngOnInit();
-      },
-      (error) => {}
-    );
+      });
   }
 }
