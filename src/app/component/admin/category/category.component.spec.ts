@@ -2,8 +2,6 @@ import {
   ComponentFixture,
   TestBed,
   fakeAsync,
-  flush,
-  tick,
   waitForAsync,
 } from '@angular/core/testing';
 import { AdminCategoryComponent } from './category.component';
@@ -127,4 +125,17 @@ describe('AdminCategoryComponent', () => {
     };
     expect(spy).toHaveBeenCalledWith(expectedCategory);
   }));
+
+  it('Should reset the form', () => {
+    const formMock = jasmine.createSpyObj('NgForm', ['resetForm']);
+    component.editCategoryForm = formMock;
+    component.resetForm();
+    expect(formMock.resetForm).toHaveBeenCalled();
+  });
+
+  it('Should call the reset form method', () => {
+    let spy = spyOn(component, 'resetForm');
+    component.onModalHidden();
+    expect(spy).toHaveBeenCalled();
+  });
 });

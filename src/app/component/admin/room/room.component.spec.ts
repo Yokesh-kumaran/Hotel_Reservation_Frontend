@@ -1,12 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AdminRoomComponent } from './room.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { RoomService } from 'src/app/service/room.service';
 import { CategoryService } from 'src/app/service/category.service';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { AppResponse } from 'src/app/model/appResponse';
 import { Room } from 'src/app/model/room';
 
@@ -14,6 +13,7 @@ describe('AdminRoomComponent', () => {
   let component: AdminRoomComponent;
   let fixture: ComponentFixture<AdminRoomComponent>;
   let roomService: RoomService;
+  let categoryService: CategoryService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -29,7 +29,29 @@ describe('AdminRoomComponent', () => {
       TestBed.inject(CategoryService)
     );
     roomService = TestBed.inject(RoomService);
+    categoryService = TestBed.inject(CategoryService);
   });
+
+  function getAllCategoriesError(errorMessage: string, expectedError: string) {
+    const mockErrorResponse = { error: { error: { message: errorMessage } } };
+    const categoryServiceSpy = spyOn(
+      categoryService,
+      'getAllCategories'
+    ).and.returnValue(throwError(mockErrorResponse));
+    component.ngOnInit();
+    expect(categoryServiceSpy).toHaveBeenCalledWith();
+    expect(component.error).toEqual(expectedError);
+  }
+
+  function getAllRoomsError(errorMessage: string, expectedError: string) {
+    const mockErrorResponse = { error: { error: { message: errorMessage } } };
+    const roomServiceSpy = spyOn(roomService, 'getAllRooms').and.returnValue(
+      throwError(mockErrorResponse)
+    );
+    component.ngOnInit();
+    expect(roomServiceSpy).toHaveBeenCalledWith();
+    expect(component.error).toEqual(expectedError);
+  }
 
   it('AdminRoomComponent should created', () => {
     expect(component).toBeTruthy();
@@ -71,5 +93,159 @@ describe('AdminRoomComponent', () => {
     expect(component.rooms.some((room) => room.id === roomIdToDelete)).toBe(
       false
     );
+  });
+
+  it('Should perform ngOnInit()', () => {
+    spyOn(categoryService, 'getAllCategories').and.returnValue(
+      of({
+        status: 200,
+        timestamp: '',
+        data: {
+          categories: [
+            { id: 1, name: 'Category 1' },
+            { id: 2, name: 'Category 2' },
+            { id: 3, name: 'Category 3' },
+          ],
+        },
+        error: null,
+      })
+    );
+    component.ngOnInit();
+    expect(component.categories.length).toBe(3);
+  });
+
+  it('Should handle getAllCategories() error with comma-separated message', () => {
+    getAllCategoriesError('Error 1,Error 2', 'Error 1');
+  });
+
+  it('Should handle getAllCategories() error without message', () => {
+    getAllCategoriesError('', '');
+  });
+
+  it('Should handle error in getRooms() with comma-separated message', () => {
+    getAllRoomsError('Error 1,Error 2', 'Error 1');
+  });
+
+  it('Should handle error in getRooms() with comma-separated message', () => {
+    getAllRoomsError('', '');
+  });
+
+  it('Should perform addRoom() method', () => {
+    const mockAddRoom = {
+      description: 'dummy',
+      price: 1,
+      categoryId: 1,
+    };
+    const mockNgForm = {
+      valid: true,
+      value: mockAddRoom,
+    } as NgForm;
+
+    spyOn(roomService, 'createRoom').and.returnValue(
+      of({
+        status: 200,
+        timestamp: '',
+        data: [],
+        error: '',
+      })
+    );
+    spyOn(component, 'ngOnInit');
+    component.addRoom(mockNgForm);
+    expect(component.ngOnInit).toHaveBeenCalled();
+  });
+
+  it('Should perform addRoom() with error', () => {
+    const mockAddRoom = {
+      description: 'dummy',
+      price: 1,
+      categoryId: 1,
+    };
+    const mockNgForm = {
+      valid: true,
+      value: mockAddRoom,
+    } as NgForm;
+    spyOn(roomService, 'createRoom').and.returnValue(
+      throwError('Error occured')
+    );
+    component.addRoom(mockNgForm);
+    expect(component.error).toBe('Error occured');
+  });
+
+  it('addRoomForm invalid part should run in addRoom()', async () => {
+    component.file = 'photo';
+    component.editId = 100;
+    const mockNgForm = {
+      valid: true,
+      value: {
+        id: 1,
+        description: 'dummy',
+        price: 1,
+        categoryId: 1,
+      },
+    } as NgForm;
+    let spy = spyOn(roomService, 'updateRoom').and.returnValue(
+      of({
+        status: 200,
+        timestamp: 'dummy',
+        data: [
+          {
+            id: 1,
+            description: 'string',
+            price: 1,
+            categoryName: 'string',
+          },
+        ],
+        error: null,
+      })
+    );
+    component.addRoom(mockNgForm);
+    await fixture.whenStable();
+    expect(component.editId).toBe(0);
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('Should perform edit()', () => {
+    const mockRoom = {
+      id: 1,
+      price: 1,
+      description: 'dummy',
+      categoryName: 'dummy',
+    };
+    component.edit(mockRoom);
+    expect(component.selectedRoom.id).toBe(1);
+    expect(component.editId).toBe(1);
+  });
+
+  it('Should perform error cause in editRoomById()', () => {
+    const randomId = 1;
+    spyOn(roomService, 'deleteRoom').and.returnValue(
+      throwError('error message')
+    );
+    component.deleteRoomById(randomId);
+    expect(component.error).toBe('error message');
+  });
+
+  it('Should perform onFileChange()', () => {
+    const mockEvent = {
+      target: {
+        files: ['dummy content'],
+      },
+    };
+    component.onFileChange(mockEvent);
+    expect(component.file).toBeDefined();
+    expect(component.file).toBe('dummy content');
+  });
+
+  it('Should perform resetForm()', () => {
+    const mockAddRoomForm = jasmine.createSpyObj('NgForm', ['resetForm']);
+    component.addRoomForm = mockAddRoomForm;
+    component.resetForm();
+    expect(component.addRoomForm.resetForm).toHaveBeenCalled();
+  });
+
+  it('Should perform onModalHidden()', () => {
+    let spy = spyOn(component, 'resetForm');
+    component.onModalHidden();
+    expect(spy).toHaveBeenCalled();
   });
 });

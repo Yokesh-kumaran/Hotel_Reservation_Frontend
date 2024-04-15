@@ -43,7 +43,7 @@ export class AdminHomeComponent implements OnInit {
     private categoryService: CategoryService,
     private snackBar: MatSnackBar
   ) {
-    orderService.getAllOrders;
+    orderService.getAllOrders();
   }
   ngOnInit(): void {
     this.categoryService.getAllCategories().subscribe({
@@ -80,19 +80,15 @@ export class AdminHomeComponent implements OnInit {
       next: (response: any) => {
         this.orders = response.data;
         this.totalOrders = this.orders.length;
-        console.log(this.orders);
 
         response.data.forEach((temp: any) => {
           this.totalPrice += temp.roomPrice;
           if (temp.categoryId === this.category1Id) {
             this.category1Count += 1;
-            console.log(this.category1Count);
           } else if (temp.categoryId === this.category2Id) {
             this.category2Count += 1;
-            console.log(this.category2Count);
           } else {
             this.category3Count += 1;
-            console.log(this.category3Count);
           }
         });
         this.createChart();
@@ -145,19 +141,8 @@ export class AdminHomeComponent implements OnInit {
   }
 
   deleteOrder(id: any) {
-    this.orderService.deleteOrder(id).subscribe(
-      (response) => {
-        // this.snackBar.open('Order deleted successfully', 'Close', {
-        //   duration: 3000,
-        // });
-        this.orders = this.orders.filter((order) => order.id !== id);
-      },
-      (error) => {
-        // this.snackBar.open('Error deleting order', 'Close', {
-        //   duration: 3000,
-        //   horizontalPosition: 'right',
-        // });
-      }
-    );
+    this.orderService.deleteOrder(id).subscribe((response) => {
+      this.orders = this.orders.filter((order) => order.id !== id);
+    });
   }
 }

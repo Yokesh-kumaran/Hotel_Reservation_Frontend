@@ -49,10 +49,7 @@ export class AdminUserComponent implements OnInit {
         this.users = this.users.filter((user) => user.id !== id);
       },
       (error) => {
-        this.snackBar.open('Error deleting user', 'Close', {
-          duration: 3000,
-          horizontalPosition: 'right',
-        });
+        this.error = error;
       }
     );
   }

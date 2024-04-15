@@ -55,7 +55,7 @@ export class AdminRoomComponent implements OnInit {
     private snackBar: MatSnackBar,
     private categoryService: CategoryService
   ) {
-    roomService.getAllRooms;
+    roomService.getAllRooms();
   }
 
   ngOnInit(): void {
@@ -104,34 +104,18 @@ export class AdminRoomComponent implements OnInit {
       formData.append('price', addRoomForm.value.price);
       formData.append('categoryId', addRoomForm.value.categoryId);
 
-      // const description = addRoomForm.value.description;
-      // const photo = addRoomForm.value.photo;
-      // const price = addRoomForm.value.price;
-      // const categoryId = addRoomForm.value.categoryId;
-
-      // const addRoom: Addroom = {
-      //   description: description,
-      //   photo: photo,
-      //   price: price,
-      //   categoryId: categoryId,
-      // };
-
       if (this.editId === 0) {
         this.roomService.createRoom(formData).subscribe(
-          (response) => {
+          () => {
             this.ngOnInit();
           },
           (error) => {
-            this.snackBar.open('Error adding room', 'Close', {
-              duration: 3000,
-            });
+            this.error = error;
           }
         );
-        addRoomForm.reset();
+        addRoomForm.reset;
       } else {
         this.editId = addRoomForm.value.id;
-        console.log(this.editId);
-
         const formData = new FormData();
 
         formData.append('id', this.editId.toString());
@@ -143,20 +127,9 @@ export class AdminRoomComponent implements OnInit {
         this.roomService.updateRoom(formData).subscribe({
           next: (response: any) => {
             this.rooms = response.data;
-
-            // this.snackBar.open('Room edited successfully', 'Close', {
-            //   duration: 3000,
-            // });
-          },
-          error: (err) => {
-            console.log(err);
-
-            this.snackBar.open('Error editing room', 'Close', {
-              duration: 3000,
-            });
           },
         });
-        addRoomForm.reset();
+        addRoomForm.reset;
         this.editId = 0;
       }
     }
@@ -175,10 +148,7 @@ export class AdminRoomComponent implements OnInit {
         this.rooms = this.rooms.filter((room) => room.id !== id);
       },
       (error) => {
-        this.snackBar.open('Error deleting room', 'Close', {
-          duration: 3000,
-          horizontalPosition: 'right',
-        });
+        this.error = error;
       }
     );
   }

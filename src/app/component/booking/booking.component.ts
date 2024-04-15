@@ -21,6 +21,8 @@ export class BookingComponent implements OnInit {
   checkInDate: string = '';
   checkOutDate: string = '';
 
+  error = '';
+
   minDate: string;
   constructor(
     private router: Router,
@@ -94,8 +96,9 @@ export class BookingComponent implements OnInit {
         zipCode: zipCode,
       };
 
-      this.orderService.placeOrders(order).subscribe(
-        (response) => {
+      this.orderService.placeOrders(order).subscribe({
+        next: () => {},
+        complete: () => {
           //Mail trigger
           const mail: any = {
             email: order.email,
@@ -110,14 +113,7 @@ export class BookingComponent implements OnInit {
             children: order.children,
           };
 
-          this.mailService.sendEmail(mail).subscribe({
-            next: (response: AppResponse) => {},
-            complete: () => {},
-            error: (error: Error) => {
-              console.log('Message:', error.message);
-              console.log('Name:', error.name);
-            },
-          });
+          this.mailService.sendEmail(mail).subscribe({});
 
           this.playLottieAnimation();
           setTimeout(() => {
@@ -127,8 +123,7 @@ export class BookingComponent implements OnInit {
             this.router.navigate(['/']);
           }, 2000);
         },
-        (error) => {}
-      );
+      });
     }
   }
 

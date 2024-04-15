@@ -16,9 +16,8 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { urlEndpoint } from 'src/app/utils/constant';
 
 describe('AdminUserComponent', () => {
   let component: AdminUserComponent;
@@ -42,6 +41,16 @@ describe('AdminUserComponent', () => {
     userService = TestBed.inject(UserService);
     httpTestingController = TestBed.inject(HttpTestingController);
   });
+
+  function getAllUsersError(errorMessage: string, expectedError: string) {
+    const mockErrorResponse = { error: { error: { message: errorMessage } } };
+    const userServiceSpy = spyOn(userService, 'getAllUsers').and.returnValue(
+      throwError(mockErrorResponse)
+    );
+    component.ngOnInit();
+    expect(userServiceSpy).toHaveBeenCalledWith();
+    expect(component.error).toEqual(expectedError);
+  }
 
   it('AdminUserComponent should created', () => {
     expect(component).toBeTruthy();
@@ -87,4 +96,53 @@ describe('AdminUserComponent', () => {
     );
     flush();
   }));
+
+  it('Should perform ngOnInit()', () => {
+    spyOn(userService, 'getAllUsers').and.returnValue(
+      of({
+        status: 200,
+        timestamp: 'dummy',
+        data: [
+          {
+            id: 1,
+            name: 'string',
+            username: 'string',
+            joinedAt: 'string',
+          },
+          {
+            id: 2,
+            name: 'string',
+            username: 'string',
+            joinedAt: 'string',
+          },
+        ],
+        error: null,
+      })
+    );
+    component.ngOnInit();
+    expect(component.users.length).toBe(2);
+    expect(component.user).toEqual({
+      id: 1,
+      name: 'string',
+      username: 'string',
+      joinedAt: 'string',
+    });
+  });
+
+  it('Should handle error in getAllUsers() with comma-separated message', () => {
+    getAllUsersError('Error 1,Error 2', 'Error 1');
+  });
+
+  it('Should handle error in getAllUsers() without comma-separated message', () => {
+    getAllUsersError('', '');
+  });
+
+  it('Should perform deleteUser() with error', () => {
+    const randomId = 1;
+    spyOn(userService, 'deleteUserById').and.returnValue(
+      throwError('Error occured')
+    );
+    component.deleteUser(randomId);
+    expect(component.error).toBe('Error occured');
+  });
 });
